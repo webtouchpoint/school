@@ -27,9 +27,9 @@
                         <li>
                             <a href="{{ route('school.edit', 1) }}">School</a>
                         </li>
-<!--                         <li>
-                            <a href="{{ route('school-sessions.create') }}">Session</a>
-                        </li> -->
+                        <li>
+                            <a href="{{ route('school-sessions.index') }}">Session</a>
+                        </li>
                     </ul>
                 </li>
             </ul>

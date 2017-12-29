@@ -27,7 +27,15 @@
             </div>      
         </div>
 
-        @yield('content')
+        @if(isset($vueView))
+            <component is="{{ $vueView }}" inline-template>
+        @endif
+            <div>
+                @yield('content')  
+            </div>
+        @if(isset($vueView))
+            </component>
+        @endif
     </div>
 
     <!-- Scripts -->

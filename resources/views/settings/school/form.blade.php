@@ -65,7 +65,7 @@
 <div class="form-group{{ $errors->has('date_of_establishment') ? ' has-error' : '' }}">
 	<label for="date_of_establishment" class="col-md-4 control-label">Date of Establishment:</label>
 	<div class="col-md-6">
-		<input type="text" class="form-control input-sm datepicker" value="{{ old('date_of_establishment', $school->date_of_establishment) }}" id="date_of_establishment" name="date_of_establishment">
+		<input type="text" class="form-control input-sm datepicker" value="{{ old('date_of_establishment', $school->date_of_establishment->format('d-m-Y')) }}" id="date_of_establishment" name="date_of_establishment">
 
 		{!! $errors->first('date_of_establishment', '<span class="help-block">:message</span>') !!}
 	</div>

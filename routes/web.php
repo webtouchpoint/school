@@ -24,6 +24,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::resource('school-sessions', 'SchoolSessionsController');
 	});
 
+	Route::prefix('datatable')->namespace('DataTable')->group(function () {
+		Route::get('school-sessions', 'SchoolSessionsController@index')->name('datatable.school-sessions.index');
+		Route::patch('school-sessions/{school_session}', 'SchoolSessionsController@update');
+	});
 });
 
 Route::get('/', function () {

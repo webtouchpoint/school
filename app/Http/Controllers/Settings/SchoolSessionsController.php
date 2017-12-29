@@ -15,7 +15,7 @@ class SchoolSessionsController extends Controller
      */
     public function index()
     {
-        return SchoolSession::all();
+        return view('settings.school_sessions.index');
     }
 
     /**
