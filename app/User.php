@@ -26,4 +26,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */  
+    protected $casts = [
+        'is_admin' => 'boolean',
+    ];  
+
+    /**
+     * Check whether the given user is admin or not.
+     *
+     * @return 
+     */
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
 }
