@@ -14,7 +14,15 @@
 Route::middleware(['auth', 'admin'])->group(function () {
 	// Home
 	Route::get('/home', 'HomeController@index')->name('home');
-
+	// Settings
+	Route::prefix('settings')->namespace('settings')->group(function () {
+		// School
+		Route::get('school/{id}/edit', 'SchoolController@edit')->name('school.edit');
+		Route::post('school', 'SchoolController@store')->name('school.store');
+		Route::patch('school/{school}', 'SchoolController@update')->name('school.update');
+		// Sessions
+		Route::resource('school-sessions', 'SchoolSessionsController');
+	});
 
 });
 

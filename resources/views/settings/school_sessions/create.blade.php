@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Home
+    Session
 @endsection
 
 @section('content')
@@ -10,10 +10,12 @@
         <div class="col-md-8 col-md-offset-2">
             @component('components.panelWithHeading')
                 @slot('title')
-                    Home
+                    Session Details
                 @endslot
 
-                Welcome to Administration area.
+               <form class="form-horizontal" method="POST" action="{{ route('school-sessions.store') }}">
+                    @include('settings.school_sessions.form')
+                </form>
             @endcomponent
         </div>
     </div>
