@@ -35,16 +35,7 @@
 		{!! $errors->first('end_date', '<span class="help-block">:message</span>') !!}
 	</div>
 </div>
-<div class="form-group">
-	<div class="checkbox col-md-6 col-md-offset-4">
-		<label>
-	  		<input type="checkbox" 
-	  			name="is_current" 
-	  			id="is_current" 
-	  			value="1"> Current Year
-		</label>
-	</div>
-</div>
+
 
 <div class="form-group">
     <div class="col-md-6 col-md-offset-4">

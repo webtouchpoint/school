@@ -16,4 +16,9 @@ class SchoolClass extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function sections()
+    {
+        return $this->hasMany(Section::class, 'school_class_id');
+    }
 }

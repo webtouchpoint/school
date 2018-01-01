@@ -41,9 +41,7 @@ class SchoolSessionsController extends Controller
     {
         $validatedData = $this->validateData($request);
 
-        $this->setAllCurrentYearFalse($validatedData);
-
-        SchoolSession::create($validatedData);
+        $schoolSession = SchoolSession::create($validatedData);
 
         flash('Session data has been saved!');
 
@@ -84,8 +82,6 @@ class SchoolSessionsController extends Controller
     {
         $validatedData = $this->validateData($request);
 
-        $this->setAllCurrentYearFalse($validatedData);
-
         $schoolSession->update($validatedData);
 
         flash('Session data has been updated!');
@@ -110,16 +106,37 @@ class SchoolSessionsController extends Controller
             'user_id' => 'required',
             'session' => 'required',
             'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
-            'is_current' => 'boolean'
+            'end_date' => 'required|date|after:start_date'
         ]);
     }
 
-    protected function setAllCurrentYearFalse($validatedData)
+    public function showSetSessionForm()
     {
-        if (isset($validatedData['is_current']) &&  $validatedData['is_current'] == true ) {
-          DB::table('school_sessions')
+        return view('settings.school_sessions.set_session', [
+            'schoolSessions' => SchoolSession::select(['id', 'session'])->get()
+        ]);
+    }
+
+    public function setSession(Request $request)
+    {
+        $this->validate($request, ['session' => 'required|exists:school_sessions,id']);
+
+        $this->setAllCurrentYearFalse();
+
+        $schoolSession = SchoolSession::find($request->session);
+
+        $schoolSession->is_current = true;
+        $schoolSession->save();
+
+        flash('Session has been set!');
+
+        return redirect(route('school-sessions.index'));
+
+    }
+
+    protected function setAllCurrentYearFalse()
+    {
+        DB::table('school_sessions')
             ->update(['is_current' => false]);
-        }
     }
 }

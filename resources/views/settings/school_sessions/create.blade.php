@@ -10,7 +10,7 @@
         <div class="col-md-8 col-md-offset-2">
             @component('components.panelWithHeading')
                 @slot('title')
-                    Session Details
+                    Session Create
                 @endslot
 
                <form class="form-horizontal" method="POST" action="{{ route('school-sessions.store') }}">

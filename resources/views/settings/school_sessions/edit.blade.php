@@ -10,7 +10,7 @@
         <div class="col-md-8 col-md-offset-2">
             @component('components.panelWithHeading')
                 @slot('title')
-                    School Details
+                    Session - Edit
                 @endslot
 
                <form class="form-horizontal" method="POST" action="{{ route('school-sessions.update', $schoolSession->id) }}">

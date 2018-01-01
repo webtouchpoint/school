@@ -40,8 +40,10 @@ class SchoolSession extends Model
         $this->attributes['end_date'] = Carbon::createFromFormat('d-m-Y', $value);
     }
 
-    public function sections()
+    public function toggleIsCurrent()
     {
-        return $this->hasMany(Section::class, 'school_class_id');
+        $this->is_current = !$this->is_current ;
+        return $this;
     }
+    
 }

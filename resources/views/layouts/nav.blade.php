@@ -24,6 +24,9 @@
                        Settings <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
+                       <li>
+                            <a href="{{ route('school-sessions.show-set-session-form') }}">Set Current Session</a>
+                        </li>
                         <li>
                             <a href="{{ route('sections.index') }}">Sections</a>
                         </li>

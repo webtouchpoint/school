@@ -22,6 +22,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::patch('school/{school}', 'SchoolController@update')->name('school.update');
 		// Sessions
 		Route::resource('school-sessions', 'SchoolSessionsController');
+		Route::get('set-session', 'SchoolSessionsController@showSetSessionForm')->name('school-sessions.show-set-session-form');
+		Route::post('set-session', 'SchoolSessionsController@setSession')->name('school-sessions.set-session');
 		// Classes
 		Route::resource('school-classes', 'SchoolClassesController');
 		// Section
