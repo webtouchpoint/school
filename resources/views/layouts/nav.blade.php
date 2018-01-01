@@ -25,10 +25,16 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{{ route('school.edit', 1) }}">School</a>
+                            <a href="{{ route('sections.index') }}">Sections</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('school-classes.index') }}">Classes</a>
                         </li>
                         <li>
                             <a href="{{ route('school-sessions.index') }}">Session</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('school.edit', 1) }}">School</a>
                         </li>
                     </ul>
                 </li>

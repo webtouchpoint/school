@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSchoolSessionsTable extends Migration
+class CreateSubjectGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateSchoolSessionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('school_sessions', function (Blueprint $table) {
+        Schema::create('subject_groups', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
-            $table->string('session')->unique();
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->boolean('is_current')->default(false);
+            $table->string('name')->unique();
+            $table->string('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -35,6 +33,6 @@ class CreateSchoolSessionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_sessions');
+        Schema::dropIfExists('subject_groups');
     }
 }

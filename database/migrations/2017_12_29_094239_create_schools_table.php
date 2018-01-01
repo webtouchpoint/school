@@ -15,6 +15,10 @@ class CreateSchoolsTable extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id')->index();
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
             $table->string('name');
             $table->string('address_line1')->nullable();
             $table->string('address_line2')->nullable();
@@ -28,12 +32,7 @@ class CreateSchoolsTable extends Migration
             $table->tinyinteger('highest_class')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-
-            $table->unsignedInteger('user_id')->index();
-
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

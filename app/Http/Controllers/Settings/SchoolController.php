@@ -63,7 +63,7 @@ class SchoolController extends Controller
      * @param  \App\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(CreateSchoolForm $request, School $school)
     {
         $school->update($request->all());
 

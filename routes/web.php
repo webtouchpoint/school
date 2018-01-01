@@ -22,11 +22,20 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::patch('school/{school}', 'SchoolController@update')->name('school.update');
 		// Sessions
 		Route::resource('school-sessions', 'SchoolSessionsController');
+		// Classes
+		Route::resource('school-classes', 'SchoolClassesController');
+		// Section
+		Route::resource('sections', 'SectionsController');
 	});
 
 	Route::prefix('datatable')->namespace('DataTable')->group(function () {
+		// Session
 		Route::get('school-sessions', 'SchoolSessionsController@index')->name('datatable.school-sessions.index');
 		Route::patch('school-sessions/{school_session}', 'SchoolSessionsController@update');
+		// Class
+		Route::get('school-classes', 'SchoolClassesController@index')->name('datatable.school-classes.index');
+		// Section
+		Route::get('sections', 'SectionsController@index')->name('datatable.sections.index');
 	});
 });
 

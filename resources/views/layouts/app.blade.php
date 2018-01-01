@@ -16,6 +16,7 @@
     <link href="{{ asset('libs/datepicker/datepicker.min.css') }}" rel="stylesheet">
 </head>
 <body>
+    
     <div id="app">
         @include('layouts.nav')
 

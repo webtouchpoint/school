@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Settings;
 
-use App\Models\Settings\SchoolSession;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Settings\SchoolSession;
 
 class SchoolSessionsController extends Controller
 {
@@ -38,9 +39,16 @@ class SchoolSessionsController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $this->validateData();
+        $validatedData = $this->validateData($request);
+
+        $this->setAllCurrentYearFalse($validatedData);
 
         SchoolSession::create($validatedData);
+
+        flash('Session data has been saved!');
+
+        return redirect(route('school-sessions.index'));
+
     }
 
     /**
@@ -74,9 +82,15 @@ class SchoolSessionsController extends Controller
      */
     public function update(Request $request, SchoolSession $schoolSession)
     {
-        $validatedData = $this->validateData(true);
+        $validatedData = $this->validateData($request);
+
+        $this->setAllCurrentYearFalse($validatedData);
 
         $schoolSession->update($validatedData);
+
+        flash('Session data has been updated!');
+
+        return redirect(route('school-sessions.index'));
     }
 
     /**
@@ -90,14 +104,22 @@ class SchoolSessionsController extends Controller
         //
     }
 
-    protected function validateData($isUpdate = false)
+    protected function validateData($request)
     {
-        return $validatedData = request()->validate([
+        return $request->validate([
             'user_id' => 'required',
             'session' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
             'is_current' => 'boolean'
         ]);
+    }
+
+    protected function setAllCurrentYearFalse($validatedData)
+    {
+        if (isset($validatedData['is_current']) &&  $validatedData['is_current'] == true ) {
+          DB::table('school_sessions')
+            ->update(['is_current' => false]);
+        }
     }
 }

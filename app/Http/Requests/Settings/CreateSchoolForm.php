@@ -24,7 +24,8 @@ class CreateSchoolForm extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name' => 'required',
+            'date_of_establishment' => 'required|date'
         ];
     }
 

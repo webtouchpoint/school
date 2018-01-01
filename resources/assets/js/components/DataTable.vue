@@ -1,10 +1,14 @@
 <template>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">{{ response.table }}</h3>
-            <a href="#" class="pull-right" v-if="response.allow.creation" @click.prevent="creating.active = !creating.active">
-            {{ creating.active ? 'Cancel' : 'New record' }}
-        </a>
+            <h3 class="panel-title">{{ response.table | removeUnderscore }}
+                <a href="#" class="pull-right" v-if="response.allow.creation" @click.prevent="creating.active = !creating.active">
+                    {{ creating.active ? 'Cancel' : 'New record' }}
+                </a>
+                <a :href="getLocation + '/create'" class="pull-right">
+                    {{ creating.active ? 'Cancel' : 'New record' }}
+                </a>
+            </h3>
         </div>
 
         <div class="panel-body">
@@ -77,10 +81,10 @@
 
             <div class="table-responsive">
                 <table class="table table-striped">
-                    <thead>
+                    <thead class="thead-bg">
                         <tr>
                             <th v-for="column in response.displayable"> 
-                                <span @click="sortBy(column)">{{ column }}</span>
+                                <span @click="sortBy(column)">{{ column | removeUnderscore }}</span>
 
                                 <div 
                                     class="arrow" 
@@ -110,12 +114,14 @@
 
                             </td>
                             <td>
-                                <a href="#" @click.prevent="edit(record)" v-if="editing.id !== record.id">Edit</a>
+<!--                                 <a href="#" @click.prevent="edit(record)" v-if="editing.id !== record.id">Edit</a>
 
                                 <template v-if="editing.id === record.id">
                                     <a href="#" @click.prevent="update">Save</a><br>
                                     <a href="#" @click.prevent="editing.id = null">Cancel</a>
-                                </template>
+                                </template> -->
+
+                                <a :href="getLocation + '/' + record.id + '/edit'">Edit</a>
                             </td>
                         </tr>
                     </tbody>
@@ -186,6 +192,9 @@
                 }
 
                 return data;
+            },
+            getLocation() {
+                 return window.location.pathname;
             }
         },
 
@@ -241,8 +250,14 @@
             }
         },
 
+        filters: {
+            removeUnderscore (value) {
+                return _.startCase(value);
+            }
+        },
+
         mounted () {
-            this.getRecords();
+            this.getRecords()
         }
     }
 </script>
@@ -269,5 +284,8 @@
             border-right: 4px solid transparent;
             border-top: 4px solid #222;
         }
+    }
+    .thead-bg { 
+        background-color: #dfe3ee;
     }
 </style>

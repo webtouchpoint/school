@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('data-table', require('./components/DataTable.vue'));
+Vue.component('section-data-table', require('./components/SectionDataTable.vue'));
 
 const app = new Vue({
     el: '#app'
