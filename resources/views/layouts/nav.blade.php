@@ -30,14 +30,17 @@
                        Settings <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="{{ route('subject-groups.index') }}">Subject Groups</a>
+                       <li>
+                            <a href="{{ route('subjects.index') }}">Subject</a>
                         </li>
                         <li>
-                            <a href="{{ route('sections.index') }}">Sections</a>
+                            <a href="{{ route('subject-groups.index') }}">Subject Group</a>
                         </li>
                         <li>
-                            <a href="{{ route('school-classes.index') }}">Classes</a>
+                            <a href="{{ route('sections.index') }}">Section</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('school-classes.index') }}">Class</a>
                         </li>
                         <li>
                             <a href="{{ route('school-sessions.show-set-session-form') }}">Set Current Session</a>

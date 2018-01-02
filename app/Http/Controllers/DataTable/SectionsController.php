@@ -33,11 +33,6 @@ class SectionsController extends DataTableController
             return [];
         }
 
-        $sections = $sections->map(function ($item, $key) {
-            $item['class_name'] = $item->schoolClass->name;
-            return $item;
-        });
-
         return SectionResource::collection($sections);
     }
 }

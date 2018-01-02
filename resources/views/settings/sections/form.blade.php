@@ -12,7 +12,6 @@
 	                	{{ old('school_class_id', optional($section->schoolClass)->id) == $schoolClass->id ? ' selected' : '' }}>
 	                		{{ $schoolClass->name}}
 	            	</option>
-	            	{{ $schoolClass }}
 	            @endforeach
 	        @endif
 	    </select>

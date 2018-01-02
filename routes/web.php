@@ -20,16 +20,19 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::get('school/{id}/edit', 'SchoolController@edit')->name('school.edit');
 		Route::post('school', 'SchoolController@store')->name('school.store');
 		Route::patch('school/{school}', 'SchoolController@update')->name('school.update');
-		// Sessions
+		// Session
 		Route::resource('school-sessions', 'SchoolSessionsController');
 		Route::get('set-session', 'SchoolSessionsController@showSetSessionForm')->name('school-sessions.show-set-session-form');
 		Route::post('set-session', 'SchoolSessionsController@setSession')->name('school-sessions.set-session');
-		// Classes
+		// Class
 		Route::resource('school-classes', 'SchoolClassesController');
 		// Section
 		Route::resource('sections', 'SectionsController');
-		// Subjec Group
+		// Subject Group
 		Route::resource('subject-groups', 'SubjectGroupsController');
+		Route::get('/subject-groups/fetch-by-class-id/{school_class_id}', 'SubjectGroupsController@fetchBySchoolClassId');
+		// Subject
+		Route::resource('subjects', 'SubjectsController');
 	});
 
 	Route::prefix('datatable')->namespace('DataTable')->group(function () {
@@ -42,6 +45,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::get('sections', 'SectionsController@index')->name('datatable.sections.index');
 		// Subject Group
 		Route::get('subject-groups', 'SubjectGroupsController@index')->name('datatable.subject-groups.index');
+		// Subject
+		Route::get('subjects', 'SubjectsController@index')->name('datatable.subjects.index');
 	});
 });
 

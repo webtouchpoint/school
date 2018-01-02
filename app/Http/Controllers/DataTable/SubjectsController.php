@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\DataTable;
 
 use Illuminate\Http\Request;
+use App\Models\Settings\Subject;
 use App\Http\Controllers\Controller;
-use App\Models\Settings\SubjectGroup;
-use App\Http\Resources\Settings\SubjectGroupResource;
+use App\Http\Resources\Settings\SubjectResource;
 
-class SubjectGroupsController extends DataTableController
+class SubjectsController extends DataTableController
 {
     public function builder()
     {
-    	return SubjectGroup::query();
+    	return Subject::query();
     }
 
     public function getDisplayableColumns()
     {
-    	return ['id', 'name', 'class name', 'description'];
+    	return ['id', 'name', 'description'];
     }
 
     protected function getRecord($request)
@@ -28,11 +28,11 @@ class SubjectGroupsController extends DataTableController
         }
 
     	try { 
-            $subjectGroups = $this->builder->limit($request->limit)->orderBy('id', 'asc')->get();
+            $subjects = $this->builder->limit($request->limit)->orderBy('id', 'asc')->get();
         } catch (QueryException $e) {
             return [];
         }
 
-        return SubjectGroupResource::collection($subjectGroups);
+        return SubjectResource::collection($subjects);
     }
 }
