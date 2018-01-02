@@ -21,4 +21,9 @@ class SchoolClass extends Model
     {
         return $this->hasMany(Section::class, 'school_class_id');
     }
+
+    public function subjectGroups()
+    {
+        return $this->hasMany(SubjectGroup::class, 'school_class_id');
+    }
 }

@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\DataTable;
 
 use Illuminate\Http\Request;
-use App\Models\Settings\Section;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Settings\SectionResource;
+use App\Models\Settings\SubjectGroup;
+use App\Http\Resources\Settings\SubjectGroupResource;
 
-class SectionsController extends DataTableController
+class SubjectGroupsController extends DataTableController
 {
     public function builder()
     {
-    	return Section::query();
+    	return SubjectGroup::query();
     }
 
     public function getDisplayableColumns()
@@ -38,6 +38,6 @@ class SectionsController extends DataTableController
             return $item;
         });
 
-        return SectionResource::collection($sections);
+        return SubjectGroupResource::collection($sections);
     }
 }

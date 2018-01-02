@@ -28,6 +28,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::resource('school-classes', 'SchoolClassesController');
 		// Section
 		Route::resource('sections', 'SectionsController');
+		// Subjec Group
+		Route::resource('subject-groups', 'SubjectGroupsController');
 	});
 
 	Route::prefix('datatable')->namespace('DataTable')->group(function () {
@@ -38,6 +40,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::get('school-classes', 'SchoolClassesController@index')->name('datatable.school-classes.index');
 		// Section
 		Route::get('sections', 'SectionsController@index')->name('datatable.sections.index');
+		// Subject Group
+		Route::get('subject-groups', 'SubjectGroupsController@index')->name('datatable.subject-groups.index');
 	});
 });
 

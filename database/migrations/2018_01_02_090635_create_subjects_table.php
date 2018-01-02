@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubjectGroupsTable extends Migration
+class CreateSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,18 @@ class CreateSubjectGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subject_groups', function (Blueprint $table) {
+        Schema::create('subjects', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('school_class_id')->index();
-            $table->foreign('school_class_id')
-                ->references('id')->on('school_classes')
+            $table->unsignedInteger('subject_group_id')->index();
+            $table->foreign('subject_group_id')
+                ->references('id')->on('subject_groups')
                 ->onDelete('cascade');
             $table->unsignedInteger('user_id')->index();
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
-            $table->string('name')->unique();
+            $table->string('name');
+            $table->string('code');
             $table->string('description')->nullable();
             $table->softDeletes();
             $table->timestamps();
@@ -37,6 +38,6 @@ class CreateSubjectGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_groups');
+        Schema::dropIfExists('subjects');
     }
 }

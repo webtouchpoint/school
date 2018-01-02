@@ -8,11 +8,9 @@
 	        @if (count($schoolClasses) > 0) 
 	            @foreach ($schoolClasses as $schoolClass)
 	                <option 
-	                	value="{{ $schoolClass->id }}"
-	                	{{ old('school_class_id', optional($section->schoolClass)->id) == $schoolClass->id ? ' selected' : '' }}>
+	                	value="{{ $schoolClass->id }}"{{ old('school_class_id', optional($subjectGroup->schoolClass)->id) == $schoolClass->id ? ' selected' : '' }}>
 	                		{{ $schoolClass->name}}
 	            	</option>
-	            	{{ $schoolClass }}
 	            @endforeach
 	        @endif
 	    </select>
@@ -22,11 +20,11 @@
 </div>
 
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-	<label for="name" class="col-md-4 control-label">Name:</label>
+	<label for="name" class="col-md-4 control-label">Group Name:</label>
 	 <div class="col-md-6">
 		<input type="text" 
 			class="form-control input-sm" 
-			value="{{ old('name', $section->name) }}" 
+			value="{{ old('name', $subjectGroup->name) }}" 
 			id="name" name="name">
 
 		{!! $errors->first('name', '<span class="help-block">:message</span>') !!}
@@ -39,14 +37,15 @@
 		<textarea class="form-control input-sm" 
 			id="description" 
 			name="description"
-			rows="5">{{ old('description', $section->description) }}</textarea>
+			rows="5">{{ old('description', $subjectGroup->description) }}</textarea>
 
 		{!! $errors->first('description', '<span class="help-block">:message</span>') !!}
 	</div>
 </div>
 
+
 <div class="form-group">
     <div class="col-md-6 col-md-offset-4">
-        <button type="submit" class="btn btn-primary">Save</button>&nbsp;<a href="{{ route('sections.index') }}" class="btn btn-default" role="button">Cancel</a>
+        <button type="submit" class="btn btn-primary">Save</button>&nbsp;<a href="{{ route('subject-groups.index') }}" class="btn btn-default" role="button">Cancel</a>
     </div>
 </div>
