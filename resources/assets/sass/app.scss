@@ -8,8 +8,8 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
-// Navbar
-//@import "_navbar";
+// Variables
+@import "navbar";
 
 .panel-title { font-weight: 600; }
 
@@ -19,3 +19,4 @@
   -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
+
