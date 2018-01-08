@@ -21,4 +21,17 @@ class FeesCategory extends Model
     {
         return $this->belongsTo(SchoolClass::class, 'school_class_id');
     }
+
+    public function feesStructures()
+    {
+        return $this->hasMany(FeesStructure::class, 'fees_category_id');
+    }
+
+    /**
+     * Get all of the subjects for the class.
+     */
+    public function FeesStructuresThroughClass()
+    {
+        return $this->hasManyThrough(FeesStructure::class, SchoolClass::class);
+    }
 }

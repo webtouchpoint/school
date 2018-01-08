@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\DataTable;
 
 use Illuminate\Http\Request;
-use App\Models\Settings\Subject;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Settings\SubjectResource;
+use App\Models\Settings\FeesCategory;
+use App\Http\Resources\Settings\FeesCategoryResource;
 
-class SubjectsController extends DataTableController
+class FeesCategoriesController extends DataTableController
 {
     public function builder()
     {
-    	return Subject::query();
+    	return FeesCategory::query();
     }
 
     public function getDisplayableColumns()
     {
-    	return ['id', 'name', 'class_name', 'subject_group', 'description'];
+    	return ['id', 'name', 'class_name', 'description'];
     }
 
     protected function getRecord($request)
@@ -28,11 +28,11 @@ class SubjectsController extends DataTableController
         }
 
     	try { 
-            $subjects = $this->builder->limit($request->limit)->orderBy('id', 'asc')->get();
+            $feesCategory = $this->builder->limit($request->limit)->orderBy('id', 'asc')->get();
         } catch (QueryException $e) {
             return [];
         }
 
-        return SubjectResource::collection($subjects);
+        return FeesCategoryResource::collection($feesCategory);
     }
 }

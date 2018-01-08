@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('data-table', require('./components/DataTable.vue'));
 Vue.component('subject-form-view', require('./views/settings/SubjectFormView.vue'));
+Vue.component('fees-structure-form-view', require('./views/settings/FeesStructureFormView.vue'));
 
 const app = new Vue({
     el: '#app'

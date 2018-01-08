@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\DataTable;
 
 use Illuminate\Http\Request;
+use App\Models\Settings\FeesStructure;
 use App\Http\Controllers\Controller;
-use App\Models\Settings\FeesCategory;
-use App\Http\Resources\Settings\FeesCategoryResource;
+use App\Http\Resources\Settings\FeesStructureResource;
 
-class FeesCategoryController extends DataTableController
+class FeesStructuresController extends DataTableController
 {
     public function builder()
     {
-    	return FeesCategory::query();
+    	return FeesStructure::query();
     }
 
     public function getDisplayableColumns()
     {
-    	return ['id', 'name', 'class name', 'description'];
+    	return ['id', 'name', 'class_name', 'fees_category', 'amount', 'description'];
     }
 
     protected function getRecord($request)
@@ -28,11 +28,11 @@ class FeesCategoryController extends DataTableController
         }
 
     	try { 
-            $feesCategory = $this->builder->limit($request->limit)->orderBy('id', 'asc')->get();
+            $feesStructure = $this->builder->limit($request->limit)->orderBy('id', 'asc')->get();
         } catch (QueryException $e) {
             return [];
         }
 
-        return FeesCategoryResource::collection($feesCategory);
+        return FeesStructureResource::collection($feesStructure);
     }
 }

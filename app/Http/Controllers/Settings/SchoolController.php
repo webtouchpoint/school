@@ -20,7 +20,7 @@ class SchoolController extends Controller
 
         $school = School::create($request->all());
 
-        flash('School data has been saved!')->success();
+        flash('School data has been saved!');
 
         return redirect()->route('school.edit', compact('school'));
     }
@@ -67,7 +67,7 @@ class SchoolController extends Controller
     {
         $school->update($request->all());
 
-        flash('School data has been saved!')->success();
+        flash('School data has been saved!');
 
         return back();
     }

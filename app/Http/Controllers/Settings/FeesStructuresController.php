@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Settings;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Settings\SchoolClass;
-use App\Models\Settings\FeesCategory;
+use App\Models\Settings\FeesStructure;
 
-class FeesCategoriesController extends Controller
+class FeesStructuresController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class FeesCategoriesController extends Controller
      */
     public function index()
     {
-        return view('settings.fees_categories.index');
+        return view('settings.fees_structures.index');
     }
 
     /**
@@ -26,8 +26,8 @@ class FeesCategoriesController extends Controller
      */
     public function create()
     {
-        return view('settings.fees_categories.create', [
-            'feesCategory' => new FeesCategory,
+        return view('settings.fees_structures.create', [
+            'feesStructure' => new FeesStructure,
             'schoolClasses' => SchoolClass::select('id', 'name')->get()
         ]);
     }
@@ -42,20 +42,20 @@ class FeesCategoriesController extends Controller
     {
         $validatedData = $this->validateData($request);
 
-        FeesCategory::create($validatedData);
+        FeesStructure::create($validatedData);
 
-        flash('Fees Category has been saved!');
+        flash('Fees Structure has been saved!');
 
-        return redirect(route('fees-categories.index'));
+        return redirect(route('fees-structures.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Settings\FeesCategory  $feesCategory
+     * @param  \App\Models\Settings\FeesStructure  $feesStructure
      * @return \Illuminate\Http\Response
      */
-    public function show(FeesCategory $feesCategory)
+    public function show(FeesStructure $feesStructure)
     {
         //
     }
@@ -63,14 +63,14 @@ class FeesCategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Settings\FeesCategory  $feesCategory
+     * @param  \App\Models\Settings\FeesStructure  $feesStructure
      * @return \Illuminate\Http\Response
      */
-    public function edit(FeesCategory $feesCategory)
+    public function edit(FeesStructure $feesStructure)
     {
-        return view('settings.fees_categories.edit', [
-            'feesCategory' => $feesCategory,
-             'schoolClasses' => SchoolClass::select('id', 'name')->get()
+       return view('settings.fees_structures.edit', [
+            'feesStructure' => $feesStructure,
+            'schoolClasses' => SchoolClass::select('id', 'name')->get()
         ]);
     }
 
@@ -78,38 +78,29 @@ class FeesCategoriesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Settings\FeesCategory  $feesCategory
+     * @param  \App\Models\Settings\FeesStructure  $feesStructure
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FeesCategory $feesCategory)
+    public function update(Request $request, FeesStructure $feesStructure)
     {
-       $validatedData = $this->validateData($request);
+        $validatedData = $this->validateData($request);
 
-        $feesCategory->update($validatedData);
+        $feesStructure->update($validatedData);
 
-        flash('Fees Category has been updated!');
-
-        return redirect(route('fees-categories.index'));
+        flash('Fees Structure has been updated!');
+        
+        return redirect(route('fees-structures.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Settings\FeesCategory  $feesCategory
+     * @param  \App\Models\Settings\FeesStructure  $feesStructure
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FeesCategory $feesCategory)
+    public function destroy(FeesStructure $feesStructure)
     {
         //
-    }
-
-    public function fetchBySchoolClassId($school_class_id)
-    {
-        $feesCategories = FeesCategory::select('id', 'name')
-                            ->where('school_class_id', $school_class_id)
-                            ->get();
-
-        return $feesCategories;
     }
 
     protected function validateData($request)
@@ -117,7 +108,9 @@ class FeesCategoriesController extends Controller
         return $request->validate([
             'user_id' => 'required',
             'school_class_id' => 'required',
+            'fees_category_id' => 'required',
             'name' => 'required',
+            'amount' => 'required|numeric',
             'description' => 'nullable'
         ]);
     }

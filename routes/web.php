@@ -35,6 +35,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::resource('subjects', 'SubjectsController');
 		// Fees Category
 		Route::resource('fees-categories', 'FeesCategoriesController');
+		Route::get('/fees-categories/fetch-by-class-id/{school_class_id}', 'FeesCategoriesController@fetchBySchoolClassId');
+		// Fees Structures
+		Route::resource('fees-structures', 'FeesStructuresController');
 	});
 
 	Route::prefix('datatable')->namespace('DataTable')->group(function () {
@@ -50,7 +53,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		// Subject
 		Route::get('subjects', 'SubjectsController@index')->name('datatable.subjects.index');
 		// Fees Category
-		Route::get('fees-categories', 'FeesCategoryController@index')->name('datatable.fees-categories.index');
+		Route::get('fees-categories', 'FeesCategoriesController@index')->name('datatable.fees-categories.index');
+		// Fees Structure
+		Route::get('fees-structures', 'FeesStructuresController@index')->name('datatable.fees-structures.index');
 	});
 });
 

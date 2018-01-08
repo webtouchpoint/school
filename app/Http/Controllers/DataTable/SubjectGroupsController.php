@@ -16,7 +16,7 @@ class SubjectGroupsController extends DataTableController
 
     public function getDisplayableColumns()
     {
-    	return ['id', 'name', 'class name', 'description'];
+    	return ['id', 'name', 'class_name', 'description'];
     }
 
     protected function getRecord($request)

@@ -31,6 +31,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
+                            <a href="{{ route('fees-structures.index') }}">Fees Structures</a>
+                        </li>
+                        <li>
                             <a href="{{ route('fees-categories.index') }}">Fees Category</a>
                         </li>
                        <li>
