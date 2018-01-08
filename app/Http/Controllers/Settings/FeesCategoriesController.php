@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Settings;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Settings\SchoolClass;
-use App\Models\Settings\SubjectGroup;
+use App\Models\Settings\FeesCategory;
 
-class SubjectGroupsController extends Controller
+class FeesCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class SubjectGroupsController extends Controller
      */
     public function index()
     {
-        return view('settings.subject_groups.index');
+        return view('settings.fees_categories.index');
     }
 
     /**
@@ -26,8 +26,8 @@ class SubjectGroupsController extends Controller
      */
     public function create()
     {
-        return view('settings.subject_groups.create', [
-            'subjectGroup' => new SubjectGroup,
+        return view('settings.fees_categories.create', [
+            'feesCategory' => new FeesCategory,
             'schoolClasses' => SchoolClass::select('id', 'name')->get()
         ]);
     }
@@ -42,20 +42,20 @@ class SubjectGroupsController extends Controller
     {
         $validatedData = $this->validateData($request);
 
-        SubjectGroup::create($validatedData);
+        FeesCategory::create($validatedData);
 
-        flash('Subject Group has been saved!');
+        flash('Fees Category has been saved!');
 
-        return redirect(route('subject-groups.index'));
+        return redirect(route('fees-categories.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Settings\SubjectGroup  $subjectGroup
+     * @param  \App\Models\Settings\FeesCategory  $feesCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(SubjectGroup $subjectGroup)
+    public function show(FeesCategory $feesCategory)
     {
         //
     }
@@ -63,13 +63,13 @@ class SubjectGroupsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Settings\SubjectGroup  $subjectGroup
+     * @param  \App\Models\Settings\FeesCategory  $feesCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubjectGroup $subjectGroup)
+    public function edit(FeesCategory $feesCategory)
     {
-        return view('settings.subject_groups.edit', [
-            'subjectGroup' => $subjectGroup,
+        return view('settings.fees_categories.edit', [
+            'feesCategory' => $feesCategory,
              'schoolClasses' => SchoolClass::select('id', 'name')->get()
         ]);
     }
@@ -78,38 +78,29 @@ class SubjectGroupsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Settings\SubjectGroup  $subjectGroup
+     * @param  \App\Models\Settings\FeesCategory  $feesCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubjectGroup $subjectGroup)
+    public function update(Request $request, FeesCategory $feesCategory)
     {
        $validatedData = $this->validateData($request);
 
-        $subjectGroup->update($validatedData);
+        $feesCategory->update($validatedData);
 
-        flash('Subject Group has been updated!');
+        flash('Fees Category has been updated!');
 
-        return redirect(route('subject-groups.index'));
+        return redirect(route('fees-categories.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Settings\SubjectGroup  $subjectGroup
+     * @param  \App\Models\Settings\FeesCategory  $feesCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubjectGroup $subjectGroup)
+    public function destroy(FeesCategory $feesCategory)
     {
         //
-    }
-
-    public function fetchBySchoolClassId($school_class_id)
-    {
-        $subjectGroups = SubjectGroup::select('id', 'name')
-                            ->where('school_class_id', $school_class_id)
-                            ->get();
-
-        return $subjectGroups;
     }
 
     protected function validateData($request)

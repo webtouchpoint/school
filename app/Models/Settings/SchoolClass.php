@@ -26,4 +26,9 @@ class SchoolClass extends Model
     {
         return $this->hasMany(SubjectGroup::class, 'school_class_id');
     }
+
+    public function feesCategories()
+    {
+        return $this->hasMany(FeesCategory::class, 'school_class_id');
+    }
 }

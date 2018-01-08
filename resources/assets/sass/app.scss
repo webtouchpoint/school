@@ -9,6 +9,13 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 // Navbar
-@import "_navbar";
+//@import "_navbar";
 
 .panel-title { font-weight: 600; }
+
+.form-control {
+  outline: none;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}

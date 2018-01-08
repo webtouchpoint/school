@@ -33,6 +33,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::get('/subject-groups/fetch-by-class-id/{school_class_id}', 'SubjectGroupsController@fetchBySchoolClassId');
 		// Subject
 		Route::resource('subjects', 'SubjectsController');
+		// Fees Category
+		Route::resource('fees-categories', 'FeesCategoriesController');
 	});
 
 	Route::prefix('datatable')->namespace('DataTable')->group(function () {
@@ -47,6 +49,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::get('subject-groups', 'SubjectGroupsController@index')->name('datatable.subject-groups.index');
 		// Subject
 		Route::get('subjects', 'SubjectsController@index')->name('datatable.subjects.index');
+		// Fees Category
+		Route::get('fees-categories', 'FeesCategoryController@index')->name('datatable.fees-categories.index');
 	});
 });
 
