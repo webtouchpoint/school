@@ -17,7 +17,7 @@ class SectionResource extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'class_name' => optonal($this->schoolClass)->name,
+            'class_name' => optional($this->schoolClass)->name,
             'description' => $this->description
         ];
     }

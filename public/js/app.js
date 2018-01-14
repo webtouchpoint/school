@@ -42972,7 +42972,7 @@ exports = module.exports = __webpack_require__(42)(undefined);
 
 
 // module
-exports.push([module.i, "\n.sortable {\n  cursor: pointer;\n}\n.arrow {\n  display: inline-block;\n  vertical-align: middle;\n  width: 0;\n  height: 0;\n  margin-left: 5px;\n  opacity: 0.6;\n}\n.arrow--asc {\n    border-left: 4px solid transparent;\n    border-right: 4px solid transparent;\n    border-bottom: 4px solid #222;\n}\n.arrow--desc {\n    border-left: 4px solid transparent;\n    border-right: 4px solid transparent;\n    border-top: 4px solid #222;\n}\n.thead-bg {\n  background-color: #dfe3ee;\n}\n", ""]);
+exports.push([module.i, "\n.sortable {\n  cursor: pointer;\n}\n.arrow {\n  display: inline-block;\n  vertical-align: middle;\n  width: 0;\n  height: 0;\n  margin-left: 5px;\n  opacity: 0.6;\n}\n.arrow--asc {\n    border-left: 4px solid transparent;\n    border-right: 4px solid transparent;\n    border-bottom: 4px solid #222;\n}\n.arrow--desc {\n    border-left: 4px solid transparent;\n    border-right: 4px solid transparent;\n    border-top: 4px solid #222;\n}\n.thead-bg {\n  background-color: #d9edf7;\n  border-color: #bce8f1;\n  color: #31708f;\n}\n", ""]);
 
 // exports
 

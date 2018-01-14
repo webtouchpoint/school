@@ -286,6 +286,8 @@
         }
     }
     .thead-bg { 
-        background-color: #dfe3ee;
+        background-color: #d9edf7;
+        border-color: #bce8f1;
+        color: #31708f;
     }
 </style>
