@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 abstract class DataTableController extends Controller
 {
     protected $allowCreation = false;
+    protected $allowDeletion = false;
 
 	protected $builder;
 
@@ -40,7 +41,7 @@ abstract class DataTableController extends Controller
                 'allow' => [
                     'creation' => $this->allowCreation,
                     'updation' => $this->allowCreation,
-                    'deletion' => $this->allowCreation
+                    'deletion' => $this->allowDeletion
                 ]
     		]
     	]);
@@ -58,6 +59,14 @@ abstract class DataTableController extends Controller
         }
 
         $this->builder->create($request->only($this->getUpdatableColumns()));
+    }
+
+    protected function destroy($id, Request $request)
+    {
+        if (!$this->allowDeletion) {
+            return;
+        }
+       $this->builder->find($id)->delete(); 
     }
 
     protected function getDisplayableColumns()

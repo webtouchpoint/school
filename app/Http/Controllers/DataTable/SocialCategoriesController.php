@@ -8,6 +8,8 @@ use App\Models\Settings\SocialCategory;
 
 class SocialCategoriesController extends DataTableController
 {
+    protected $allowDeletion = true;
+
     public function builder()
     {
     	return SocialCategory::query();

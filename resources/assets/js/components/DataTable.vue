@@ -121,7 +121,8 @@
                                     <a href="#" @click.prevent="editing.id = null">Cancel</a>
                                 </template> -->
 
-                                <a :href="getLocation + '/' + record.id + '/edit'">Edit</a>
+                                <a :href="getLocation + '/' + record.id + '/edit'">Edit</a> 
+                                <a href="#" @click.prevent="destroy(record.id)" v-if="response.allow.deletion">Delete</a>
                             </td>
                         </tr>
                     </tbody>
@@ -133,6 +134,7 @@
 
 <script>
     import queryString from 'query-string';
+    import swal from 'sweetalert';
 
     export default {
         props: ['endpoint'],
@@ -247,6 +249,25 @@
                         this.creating.errors = error.response.data.errors
                     }
                 })
+            },
+
+            destroy(id) {
+                swal({
+                    text: "Are you sure want to perform delete?",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        axios.delete(`${this.endpoint}/${id}`)
+                        .then(() => {
+                            this.getRecords()
+                              swal("Your data been deleted!", {
+                              icon: "success",
+                            });
+                        })
+                    }
+                });
             }
         },
 

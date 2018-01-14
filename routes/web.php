@@ -60,6 +60,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::get('fees-structures', 'FeesStructuresController@index')->name('datatable.fees-structures.index');
 		// Social Category
 		Route::get('social-categories', 'SocialCategoriesController@index')->name('datatable.social-categories.index');
+		Route::delete('social-categories/{social_category}', 'SocialCategoriesController@destroy')->name('datatable.social-categories.destroy');
 	});
 });
 
