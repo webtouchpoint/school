@@ -10,7 +10,8 @@ $(document).ready(function () {
 	    $(this).find('.dropdown-menu').stop(true, true).delay(20).fadeOut(30);
 	});
 	$('.datepicker').datepicker({
-	    format: 'dd-mm-yyyy'
+	    format: 'dd-mm-yyyy',
+	    autoclose: true
 	});
 });
 

@@ -16,7 +16,10 @@ class FeesCategoriesController extends Controller
      */
     public function index()
     {
-        return view('settings.fees_categories.index');
+        $feesCategories = FeesCategory::all();
+
+        return view('settings.fees_categories.index', compact('feesCategories'));
+
     }
 
     /**
@@ -100,7 +103,9 @@ class FeesCategoriesController extends Controller
      */
     public function destroy(FeesCategory $feesCategory)
     {
-        //
+        flash('"'.$feesCategory->name.'" fees category has been deleted!');
+        $feesCategory->delete();
+        return back();
     }
 
     public function fetchBySchoolClassId($school_class_id)

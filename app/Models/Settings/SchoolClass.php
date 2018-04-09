@@ -3,9 +3,12 @@
 namespace App\Models\Settings;
 
 use App\Model\Model;
+use App\Traits\Settings\SchoolClassRelation;
 
 class SchoolClass extends Model
 {
+    use SchoolClassRelation;
+
   	/**
      * The attributes that should be mutated to dates.
      *
@@ -17,23 +20,4 @@ class SchoolClass extends Model
         'deleted_at'
     ];
 
-    public function sections()
-    {
-        return $this->hasMany(Section::class, 'school_class_id');
-    }
-
-    public function subjectGroups()
-    {
-        return $this->hasMany(SubjectGroup::class, 'school_class_id');
-    }
-
-    public function feesCategories()
-    {
-        return $this->hasMany(FeesCategory::class, 'school_class_id');
-    }
-
-    public function feesStructures()
-    {
-        return $this->hasMany(FeesStructure::class, 'school_class_id');
-    }
 }

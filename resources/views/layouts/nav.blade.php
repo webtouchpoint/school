@@ -26,13 +26,10 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">Search</a>
+                            <a href="{{ route('students.create') }}">New Adminssion</a>
                         </li>
                         <li>
-                            <a href="#">All Student</a>
-                        </li>
-                        <li>
-                            <a href="#">New Adminssion</a>
+                            <a href="{{ route('students.index') }}">All Student</a>
                         </li>
                     </ul>
                 </li>
@@ -57,6 +54,9 @@
                         </li>
                         <li>
                             <a href="{{ route('subject-groups.index') }}">Subject Group</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('social-categories.index') }}">Social Category</a>
                         </li>
                         <li>
                             <a href="{{ route('sections.index') }}">Section</a>

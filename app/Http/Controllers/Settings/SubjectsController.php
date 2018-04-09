@@ -16,7 +16,9 @@ class SubjectsController extends Controller
      */
     public function index()
     {
-        return view('settings.subjects.index');
+        $subjects = Subject::all();
+
+        return view('settings.subjects.index', compact('subjects'));
     }
 
     /**
@@ -100,7 +102,9 @@ class SubjectsController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        //
+        flash('"'.$subject->name.'" subject of class "'.$subject->schoolClass->name.'" has been deleted!');
+        $subject->delete();
+        return back();
     }
 
     protected function validateData($request)

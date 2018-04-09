@@ -15,7 +15,9 @@ class SchoolClassesController extends Controller
      */
     public function index()
     {
-        return view('settings.school_classes.index');
+        $schoolClasses =  SchoolClass::all();
+
+        return view('settings.school_classes.index', compact('schoolClasses'));
     }
 
     /**
@@ -95,7 +97,9 @@ class SchoolClassesController extends Controller
      */
     public function destroy(SchoolClass $schoolClass)
     {
-        //
+        flash('Class "'.$schoolClass->name.'" has been deleted!');
+        $schoolClass->delete();
+        return back();
     }
 
     protected function validateData($request)

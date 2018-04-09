@@ -16,7 +16,9 @@ class SubjectGroupsController extends Controller
      */
     public function index()
     {
-        return view('settings.subject_groups.index');
+        $subjectGroups = SubjectGroup::all();
+        
+        return view('settings.subject_groups.index', compact('subjectGroups'));
     }
 
     /**
@@ -100,7 +102,9 @@ class SubjectGroupsController extends Controller
      */
     public function destroy(SubjectGroup $subjectGroup)
     {
-        //
+        flash('"'.$subjectGroup->name.'" subject group of class "'.$subjectGroup->schoolClass->name.'" has been deleted!');
+        $subjectGroup->delete();
+        return back();
     }
 
     public function fetchBySchoolClassId($school_class_id)

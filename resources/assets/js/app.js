@@ -14,11 +14,13 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-Vue.component('data-table', require('./components/DataTable.vue'));
 Vue.component('subject-form-view', require('./views/settings/SubjectFormView.vue'));
 Vue.component('fees-structure-form-view', require('./views/settings/FeesStructureFormView.vue'));
+Vue.component('admission-form-view', require('./views/students/AdmissionFormView.vue'));
+
+import destroy from './mixins/destroy';
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    mixins: [destroy]
 });

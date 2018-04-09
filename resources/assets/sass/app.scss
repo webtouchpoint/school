@@ -2,24 +2,29 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
-// Variables
-@import "variables";
+$btn-font-weight: 300;
+
+$font-family-sans-serif: "Roboto", Helvetica, Arial, sans-serif;
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
-// Variables
-@import "navbar";
 
-.panel-title { 
-	font-weight: 600; 
-	color: #31708f;
+
+body, label, .checkbox label {
+  font-weight: 300;
 }
 
-.form-control {
-  outline: none;
-  -webkit-box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  box-shadow: none !important;
-}
+
+
+@import "components/panel";
+
+
+// Fontawesome
+@import "../libs/font-awesome/scss/font-awesome";
+
+
+
+
+
 

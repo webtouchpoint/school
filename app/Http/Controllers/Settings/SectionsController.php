@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Settings\Section;
 use App\Http\Controllers\Controller;
 use App\Models\Settings\SchoolClass;
+use App\Http\Resources\Settings\SectionResource;
 
 class SectionsController extends Controller
 {
@@ -14,9 +15,10 @@ class SectionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('settings.sections.index');
+        $sections = Section::with('schoolClass')->get();
+        return view('settings.sections.index', compact('sections'));
     }
 
     /**
@@ -100,7 +102,18 @@ class SectionsController extends Controller
      */
     public function destroy(Section $section)
     {
-        //
+        flash('"'.$section->name.'" section of class "'.$section->schoolClass->name.'" has been deleted!');
+        $section->delete();
+        return back();
+    }
+
+    public function fetchBySchoolClassId($school_class_id)
+    {
+        $sections = Section::select('id', 'name')
+                            ->where('school_class_id', $school_class_id)
+                            ->get();
+
+        return $sections;
     }
 
     protected function validateData($request)

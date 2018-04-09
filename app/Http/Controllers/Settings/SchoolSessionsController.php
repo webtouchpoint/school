@@ -16,7 +16,9 @@ class SchoolSessionsController extends Controller
      */
     public function index()
     {
-        return view('settings.school_sessions.index');
+        $schoolSessions = SchoolSession::all();
+
+        return view('settings.school_sessions.index', compact('schoolSessions'));
     }
 
     /**
@@ -86,7 +88,8 @@ class SchoolSessionsController extends Controller
 
         flash('Session data has been updated!');
 
-        return redirect(route('school-sessions.index'));
+        return redirect()
+            ->route('school-sessions.index');
     }
 
     /**
@@ -97,7 +100,9 @@ class SchoolSessionsController extends Controller
      */
     public function destroy(SchoolSession $schoolSession)
     {
-        //
+        flash('"'.$schoolSession->session.'" session has been deleted!');
+        $schoolSession->delete();
+        return back();
     }
 
     protected function validateData($request)

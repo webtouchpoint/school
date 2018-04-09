@@ -4,7 +4,7 @@
 	<label for="session" class="col-md-4 control-label">Session:</label>
 	 <div class="col-md-6">
 		<input type="text" 
-			class="form-control input-sm" 
+			class="form-control" 
 			value="{{ old('session', $schoolSession->session) }}" 
 			id="session" name="session">
 
@@ -16,7 +16,7 @@
 	<label for="start_date" class="col-md-4 control-label">Start date:</label>
 	 <div class="col-md-6">
 		<input type="text" 
-			class="form-control input-sm datepicker" 
+			class="form-control datepicker" 
 			value="{{ old('start_date', optional($schoolSession->start_date)->format('d-m-Y')) }}" 
 			id="start_date" name="start_date">
 
@@ -28,7 +28,7 @@
 	<label for="end_date" class="col-md-4 control-label">End date:</label>
 	 <div class="col-md-6">
 		<input type="text" 
-			class="form-control input-sm datepicker" 
+			class="form-control datepicker" 
 			value="{{ old('end_date', optional($schoolSession->end_date)->format('d-m-Y')) }}" 
 			id="end_date" name="end_date">
 

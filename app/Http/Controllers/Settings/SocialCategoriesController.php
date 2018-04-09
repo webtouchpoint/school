@@ -15,7 +15,9 @@ class SocialCategoriesController extends Controller
      */
     public function index()
     {
-        return view('settings.social_categories.index');
+        $socialCategories = SocialCategory::all();
+
+        return view('settings.social_categories.index', compact('socialCategories'));
     }
 
     /**
@@ -97,7 +99,9 @@ class SocialCategoriesController extends Controller
      */
     public function destroy(SocialCategory $socialCategory)
     {
-        //
+        flash('"'.$socialCategory->name.'" social category has been deleted!');
+        $socialCategory->delete();
+        return back();
     }
 
     protected function validateData($request)

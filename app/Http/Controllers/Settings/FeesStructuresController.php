@@ -16,7 +16,9 @@ class FeesStructuresController extends Controller
      */
     public function index()
     {
-        return view('settings.fees_structures.index');
+        $feesStructures = FeesStructure::all();
+        
+        return view('settings.fees_structures.index', compact('feesStructures'));
     }
 
     /**
@@ -100,7 +102,9 @@ class FeesStructuresController extends Controller
      */
     public function destroy(FeesStructure $feesStructure)
     {
-        //
+        flash('"'.$feesStructure->name.'" fees structure has been deleted!');
+        $feesStructure->delete();
+        return back();
     }
 
     protected function validateData($request)

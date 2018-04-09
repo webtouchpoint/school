@@ -14,6 +14,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Datepicker -->
     <link href="{{ asset('libs/datepicker/datepicker.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('libs/datatable/datatable.min.css') }}" rel="stylesheet">
+    @yield('styles')
 </head>
 <body>
     
@@ -22,7 +24,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-12">
                     @include('flash::message')   
                 </div>      
             </div>      
@@ -43,6 +45,8 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- Datepicker -->
     <script src="{{ asset('libs/datepicker/datepicker.min.js') }}"></script>
+    <script src="{{ asset('libs/datatable/datatable.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

@@ -77,6 +77,9 @@
 
 <div class="form-group">
     <div class="col-md-6 col-md-offset-4">
-        <button type="submit" class="btn btn-primary">Save</button>&nbsp;<a href="{{ route('subjects.index') }}" class="btn btn-default" role="button">Cancel</a>
+        <button type="submit" class="btn btn-primary">
+        	Save
+        </button>
+        <a href="{{ route('subjects.index') }}" class="btn btn-default" role="button">Cancel</a>
     </div>
 </div>

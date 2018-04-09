@@ -4,7 +4,7 @@
 	<label for="name" class="col-md-4 control-label">Class Name:</label>
 	 <div class="col-md-6">
 		<input type="text" 
-			class="form-control input-sm" 
+			class="form-control" 
 			value="{{ old('name', $schoolClass->name) }}" 
 			id="name" name="name">
 
@@ -16,7 +16,7 @@
 	<label for="numeric" class="col-md-4 control-label">Class in numeric:</label>
 	 <div class="col-md-6">
 		<input type="number" 
-			class="form-control input-sm" 
+			class="form-control" 
 			value="{{ old('numeric', $schoolClass->numeric) }}" 
 			id="numeric" name="numeric"
 			min="1" max="12">
@@ -28,7 +28,7 @@
 <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
 	<label for="description" class="col-md-4 control-label">Description:</label>
 	 <div class="col-md-6">
-		<textarea class="form-control input-sm" 
+		<textarea class="form-control" 
 			id="description" 
 			name="description"
 			rows="5">{{ old('description', $schoolClass->description) }}</textarea>
