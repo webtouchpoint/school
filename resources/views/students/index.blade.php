@@ -21,6 +21,10 @@
 	    <thead>
 	    	<th>Serial</th>
 	        <th>Name</th>
+	        <th>Class</th>
+	        <th>Roll Number</th>
+	        <th>Father&#39s Name</th>
+			<th data-sortable="false">Actions</th>
 	    </thead>   
 	    <tbody>
 	        @forelse ($academicInfos as $academicInfo)
@@ -31,10 +35,37 @@
 	                <td>
 	                    {{ $academicInfo->student->name }}
 	                </td>
+                  	<td>
+	                    {{ $academicInfo->schoolClass->name }}
+	                </td>
+	                <td>
+	                	{{ $academicInfo->roll_number }}
+	                </td>
+                    <td>
+	                    {{ $academicInfo->student->fathers_name }}
+	                </td>
+	                <td>
+	                    <a href="{{ route('students.edit', $academicInfo->student_id) }}"
+	                        class="btn btn-xs btn-info">
+	                        <i class="fa fa-edit"></i> Edit
+	                    </a> 
+		                <button type="button" class="btn btn-xs btn-danger"
+	                        @click="destroy(
+								'{{ $academicInfo->student_id }}',
+								'{{ $academicInfo->student->name }}', 
+								'student',
+								'/students/', 
+								'#modal-delete-student',
+								'{{ $academicInfo->schoolClass->name }}'
+	                        )">
+	                        <i class="fa fa-times-circle fa-lg"></i>
+	                        Delete
+	                    </button> 
+                    </td>
 	            </tr>
 	        @empty
 	            <tr>
-	                <td colspan="2">
+	                <td colspan="4">
 	                    No student exists.
 	                </td>
 	            </tr>
@@ -45,11 +76,11 @@
 
 @component('components.deleteConfirmationModal')
   	@slot('modal_id')
-        modal-delete-school-session
+        modal-delete-student
     @endslot
 	Are you sure you want to delete the
-	<kbd><span>@{{ name }}</span></kbd>
-	@{{ type }}?
+	<kbd><span>@{{ name }}</span></kbd> student of
+	class <kbd><span>@{{ optional_msg }}</span></kbd>?
 @endcomponent
 
 

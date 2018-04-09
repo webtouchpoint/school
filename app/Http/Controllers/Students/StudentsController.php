@@ -94,7 +94,7 @@ class StudentsController extends Controller
      */
     public function edit(Student $student)
     {
-        $academicInfo = $student->academicInfos()->where('school_session_id', 1)->first();
+        $academicInfo = $student->academicInfos()->where('school_session_id', 2)->first();
         return view('students.edit', [
             'schoolSessions' => SchoolSession::select('id', 'session')->get(),
             'schoolClasses' => SchoolClass::select('id', 'name')->get(),
@@ -119,7 +119,7 @@ class StudentsController extends Controller
 
             $student->update($studentData);
 
-            if ($academicInfo = $student->academicInfos()->where('school_session_id', 1)->first()) {
+            if ($academicInfo = $student->academicInfos()->where('school_session_id', 2)->first()) {
                 $academicInfo->school_session_id = $request->school_session_id;
                 $academicInfo->school_class_id = $request->school_class_id;
                 $academicInfo->section_id = $request->section_id;
@@ -143,6 +143,8 @@ class StudentsController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        flash('"'.$student->name.'" student has been deleted!');
+        $student->delete();
+        return back();
     }
 }

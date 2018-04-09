@@ -533,8 +533,9 @@
 
 <div class="row">
 	<div class="col-md-12 text-center">
-		<button type="submit" class="btn btn-primary btn-lg">
+		<button type="submit" class="btn btn-primary">
 			Save
 		</button>
+		<a href="{{ route('students.index') }}" class="btn btn-default" role="button">Cancel</a>
 	</div>
 </div> <!-- ./row -->
