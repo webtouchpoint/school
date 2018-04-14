@@ -45,5 +45,10 @@ class SchoolSession extends Model
         $this->is_current = !$this->is_current ;
         return $this;
     }
+
+    public function feesStructures()
+    {
+        return $this->hasMany(FeesStructure::class, 'school_session_id');
+    }
     
 }

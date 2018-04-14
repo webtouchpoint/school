@@ -65,7 +65,7 @@
 	            </tr>
 	        @empty
 	            <tr>
-	                <td colspan="4">
+	                <td colspan="6">
 	                    No student exists.
 	                </td>
 	            </tr>

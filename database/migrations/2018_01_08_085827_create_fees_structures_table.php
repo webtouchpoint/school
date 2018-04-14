@@ -15,6 +15,10 @@ class CreateFeesStructuresTable extends Migration
     {
         Schema::create('fees_structures', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('school_session_id')->index();
+            $table->foreign('school_session_id')
+                ->references('id')->on('school_sessions')
+                ->onDelete('cascade');
             $table->unsignedInteger('school_class_id')->index();
             $table->foreign('school_class_id')
                 ->references('id')->on('school_classes')

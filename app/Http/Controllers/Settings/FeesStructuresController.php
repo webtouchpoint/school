@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Settings\SchoolClass;
 use App\Models\Settings\FeesStructure;
+use App\Models\Settings\SchoolSession;
 
 class FeesStructuresController extends Controller
 {
@@ -30,6 +31,7 @@ class FeesStructuresController extends Controller
     {
         return view('settings.fees_structures.create', [
             'feesStructure' => new FeesStructure,
+            'schoolSessions' => SchoolSession::select('id', 'session')->get(),
             'schoolClasses' => SchoolClass::select('id', 'name')->get()
         ]);
     }
@@ -48,7 +50,8 @@ class FeesStructuresController extends Controller
 
         flash('Fees Structure has been saved!');
 
-        return redirect(route('fees-structures.index'));
+        return redirect()
+            ->route('fees-structures.index');
     }
 
     /**
@@ -72,6 +75,7 @@ class FeesStructuresController extends Controller
     {
        return view('settings.fees_structures.edit', [
             'feesStructure' => $feesStructure,
+            'schoolSessions' => SchoolSession::select('id', 'session')->get(),
             'schoolClasses' => SchoolClass::select('id', 'name')->get()
         ]);
     }
@@ -111,6 +115,7 @@ class FeesStructuresController extends Controller
     {
         return $request->validate([
             'user_id' => 'required',
+            'school_session_id' => 'required',
             'school_class_id' => 'required',
             'fees_category_id' => 'required',
             'name' => 'required',

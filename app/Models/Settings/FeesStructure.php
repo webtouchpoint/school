@@ -26,4 +26,9 @@ class FeesStructure extends Model
     {
         return $this->belongsTo(SchoolClass::class, 'school_class_id');
     }
+
+    public function schoolSession()
+    {
+        return $this->belongsTo(SchoolSession::class, 'school_session_id');
+    }
 }

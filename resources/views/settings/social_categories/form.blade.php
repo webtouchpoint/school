@@ -4,7 +4,7 @@
 	<label for="name" class="col-md-4 control-label">Social Category Name:</label>
 	 <div class="col-md-6">
 		<input type="text" 
-			class="form-control input-sm" 
+			class="form-control" 
 			value="{{ old('name', $socialCategory->name) }}" 
 			id="name" name="name">
 
@@ -15,7 +15,7 @@
 <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
 	<label for="description" class="col-md-4 control-label">Description:</label>
 	 <div class="col-md-6">
-		<textarea class="form-control input-sm" 
+		<textarea class="form-control" 
 			id="description" 
 			name="description"
 			rows="5">{{ old('description', $socialCategory->description) }}</textarea>

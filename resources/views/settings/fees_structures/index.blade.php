@@ -22,41 +22,45 @@
 	        <th>Serial</th>
 	        <th>Name</th>
 	        <th>Class</th>
+	        <th>Session</th>
         	<th>Fees Category</th>
 	        <th>Description</th>
 			<th data-sortable="false">Actions</th>
 	    </thead>   
 	    <tbody>
-	        @forelse ($feesStructures as $feesStructue)
+	        @forelse ($feesStructures as $feesStructure)
 	            <tr>
 	                <td>
 	                    {{ $loop->index + 1 }}
 	                </td>
 	                <td>
-	                    {{ $feesStructue->name }}
+	                    {{ $feesStructure->name }}
 	                </td>
 	                <td>
-	                    {{ $feesStructue->schoolClass->name }}
-	                </td>	 
+	                    {{ $feesStructure->schoolClass->name }}
+	                </td>	
 	                <td>
-	                    {{ $feesStructue->feesCategory->name }}
+	                    {{ $feesStructure->schoolSession->session }}
+	                </td>		                 
+	                <td>
+	                    {{ $feesStructure->feesCategory->name }}
 	                </td>	               
 	                <td>
-	                    {{ $feesStructue->description }}
+	                    {{ $feesStructure->description }}
 	                </td>
 	                <td>
-	                    <a href="{{ route('fees-structures.edit', $feesStructue->id) }}"
+	                    <a href="{{ route('fees-structures.edit', $feesStructure->id) }}"
 	                        class="btn btn-xs btn-info">
 	                        <i class="fa fa-edit"></i> Edit
 	                    </a> 
 		                <button type="button" class="btn btn-xs btn-danger"
    	                        @click="destroy(
-								'{{ $feesStructue->id }}',
-								'{{ $feesStructue->name }}', 
+								'{{ $feesStructure->id }}',
+								'{{ $feesStructure->name }}', 
 								'fees structure',
 								'/settings/fees-structures/', 
 								'#modal-delete-fees-structure',
-								'{{ $feesStructue->schoolClass->name }}'
+								'{{ $feesStructure->schoolClass->name }}'
 	                        )">
 	                        <i class="fa fa-times-circle fa-lg"></i>
 	                        Delete
