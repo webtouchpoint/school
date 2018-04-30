@@ -2,26 +2,22 @@
 	export default {
 		data() {
 			return {
-				showFeesCategory: false,
-				feesCategories: []
+				isMonthlyFee: false,
 			}
 		},
 		methods: {
-			onClassChange() {
-				this.fetch();
+			onFeesCategoryChange() {
+				this.checkIsMonthlyOrNot();
 			},
-			fetch() {
-				let class_id = $('#school_class_id').val();
-
-				if(class_id > 0) {
-					axios.get('/settings/fees-categories/fetch-by-class-id/' + class_id)
-						.then(({data}) => this.feesCategories = data);
-					this.showFeesCategory = true;
-				}
+			checkIsMonthlyOrNot()
+			{
+				var e = document.getElementById("fees_category_id");
+				var val = e.options[e.selectedIndex].text;
+				val === 'Monthly' ? this.isMonthlyFee = true : this.isMonthlyFee = false;
 			}
 		},
 		created() {
-			this.fetch();
+			this.checkIsMonthlyOrNot();
 		}
 	}
 </script>

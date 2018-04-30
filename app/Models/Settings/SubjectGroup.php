@@ -2,7 +2,7 @@
 
 namespace App\Models\Settings;
 
-use App\Model\Model;
+use App\Models\Model;
 
 class SubjectGroup extends Model
 {

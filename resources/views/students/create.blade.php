@@ -14,7 +14,9 @@
                 <p class="bg-primary">New Admission Form</p>
 
                <form role="form" method="POST" action="{{ route('students.store') }}">
-                    @include('students.form')
+                    @include('students.form', [
+                        'isEdit' => false
+                    ])
                 </form>
             @endcomponent
         </div>

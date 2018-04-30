@@ -16,8 +16,8 @@ class FeesCategoriesController extends Controller
      */
     public function index()
     {
-        $feesCategories = FeesCategory::all();
-
+        $feesCategories = FeesCategory::orderBy('created_at', 'desc')
+            ->get();
         return view('settings.fees_categories.index', compact('feesCategories'));
 
     }
@@ -30,8 +30,7 @@ class FeesCategoriesController extends Controller
     public function create()
     {
         return view('settings.fees_categories.create', [
-            'feesCategory' => new FeesCategory,
-            'schoolClasses' => SchoolClass::select('id', 'name')->get()
+            'feesCategory' => new FeesCategory
         ]);
     }
 
@@ -72,8 +71,7 @@ class FeesCategoriesController extends Controller
     public function edit(FeesCategory $feesCategory)
     {
         return view('settings.fees_categories.edit', [
-            'feesCategory' => $feesCategory,
-             'schoolClasses' => SchoolClass::select('id', 'name')->get()
+            'feesCategory' => $feesCategory
         ]);
     }
 
@@ -108,21 +106,11 @@ class FeesCategoriesController extends Controller
         return back();
     }
 
-    public function fetchBySchoolClassId($school_class_id)
-    {
-        $feesCategories = FeesCategory::select('id', 'name')
-                            ->where('school_class_id', $school_class_id)
-                            ->get();
-
-        return $feesCategories;
-    }
-
     protected function validateData($request)
     {
         return $request->validate([
             'user_id' => 'required',
-            'school_class_id' => 'required',
-            'name' => 'required',
+            'fees_category' => 'required',
             'description' => 'nullable'
         ]);
     }

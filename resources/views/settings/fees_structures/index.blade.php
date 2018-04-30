@@ -20,9 +20,11 @@
 	<table class="table table-bordered" id="fees-structure-table">
 	    <thead>
 	        <th>Serial</th>
-	        <th>Name</th>
+	        <th>Fees Heading</th>
+	        <th>Month Year</th>
 	        <th>Class</th>
 	        <th>Session</th>
+	        <th>Amount</th>
         	<th>Fees Category</th>
 	        <th>Description</th>
 			<th data-sortable="false">Actions</th>
@@ -34,16 +36,22 @@
 	                    {{ $loop->index + 1 }}
 	                </td>
 	                <td>
-	                    {{ $feesStructure->name }}
+	                    {{ $feesStructure->fees_heading }}
+	                </td>
+	                <td>
+	                    {{ $feesStructure->month_year }}
 	                </td>
 	                <td>
 	                    {{ $feesStructure->schoolClass->name }}
 	                </td>	
 	                <td>
 	                    {{ $feesStructure->schoolSession->session }}
-	                </td>		                 
+	                </td>	
 	                <td>
-	                    {{ $feesStructure->feesCategory->name }}
+	                    {{ $feesStructure->amount }}
+	                </td>	                 
+	                <td>
+	                    {{ $feesStructure->feesCategory->fees_category }}
 	                </td>	               
 	                <td>
 	                    {{ $feesStructure->description }}
@@ -56,7 +64,7 @@
 		                <button type="button" class="btn btn-xs btn-danger"
    	                        @click="destroy(
 								'{{ $feesStructure->id }}',
-								'{{ $feesStructure->name }}', 
+								'{{ $feesStructure->fees_heading }}', 
 								'fees structure',
 								'/settings/fees-structures/', 
 								'#modal-delete-fees-structure',
@@ -69,7 +77,7 @@
 	            </tr>
 	        @empty
 	            <tr>
-	                <td colspan="6">
+	                <td colspan="7">
 	                    No fees structure exists.
 	                </td>
 	            </tr>

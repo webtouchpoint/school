@@ -1072,7 +1072,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-module.exports = __webpack_require__(56);
+module.exports = __webpack_require__(48);
 
 
 /***/ }),
@@ -1081,7 +1081,7 @@ module.exports = __webpack_require__(56);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_destroy__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_destroy__ = __webpack_require__(47);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -1101,6 +1101,7 @@ window.Vue = __webpack_require__(36);
 Vue.component('subject-form-view', __webpack_require__(39));
 Vue.component('fees-structure-form-view', __webpack_require__(41));
 Vue.component('admission-form-view', __webpack_require__(43));
+Vue.component('fees-payment-form-view', __webpack_require__(45));
 
 
 
@@ -43033,31 +43034,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			showFeesCategory: false,
-			feesCategories: []
+			isMonthlyFee: false
 		};
 	},
 
 	methods: {
-		onClassChange: function onClassChange() {
-			this.fetch();
+		onFeesCategoryChange: function onFeesCategoryChange() {
+			this.checkIsMonthlyOrNot();
 		},
-		fetch: function fetch() {
-			var _this = this;
-
-			var class_id = $('#school_class_id').val();
-
-			if (class_id > 0) {
-				axios.get('/settings/fees-categories/fetch-by-class-id/' + class_id).then(function (_ref) {
-					var data = _ref.data;
-					return _this.feesCategories = data;
-				});
-				this.showFeesCategory = true;
-			}
+		checkIsMonthlyOrNot: function checkIsMonthlyOrNot() {
+			var e = document.getElementById("fees_category_id");
+			var val = e.options[e.selectedIndex].text;
+			val === 'Monthly' ? this.isMonthlyFee = true : this.isMonthlyFee = false;
 		}
 	},
 	created: function created() {
-		this.fetch();
+		this.checkIsMonthlyOrNot();
 	}
 });
 
@@ -43139,6 +43131,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				});
 				this.showSection = true;
 			}
+		},
+		calculatePercentage: function calculatePercentage() {
+			var total_marks = $('#total_marks').val();
+			var marks_obtained = $('#marks_obtained').val();
+
+			if (total_marks > 0 && marks_obtained > 0 && total_marks >= marks_obtained) {
+				var percentage = marks_obtained / total_marks * 100;
+				$('#percentage_of_marks_obtained').val(percentage);
+			}
 		}
 	},
 	created: function created() {
@@ -43147,39 +43148,121 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */
-/***/ (function(module, exports) {
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(46)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/views/accounts/fees_collection/PaymentFormView.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-230b5e0c", Component.options)
+  } else {
+    hotAPI.reload("data-v-230b5e0c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */,
-/* 72 */
+/* 46 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			showStudent: false,
+			showFees: false,
+			academicInfos: [],
+			fees: [],
+			total: 0
+		};
+	},
+
+	methods: {
+		onClassChange: function onClassChange() {
+			this.fetchStudents();
+		},
+		onStudentChange: function onStudentChange() {
+			this.fetchFees();
+		},
+		fetchStudents: function fetchStudents() {
+			var _this = this;
+
+			var class_id = $('#school_class_id').val();
+
+			var session_id = $('#session').val();
+
+			if (class_id > 0) {
+				axios.get('/students/fetch-by-class-id/' + class_id + '/' + session_id).then(function (_ref) {
+					var data = _ref.data;
+					return _this.academicInfos = data.data;
+				});
+				this.showStudent = true;
+			}
+		},
+		fetchFees: function fetchFees() {
+			var _this2 = this;
+
+			var academinInfo_id = $('#academicInfo_id').val();
+
+			if (academinInfo_id > 0) {
+				axios.get('/settings/fees-structures/fetch-by-academicInfo-id/' + academinInfo_id).then(function (_ref2) {
+					var data = _ref2.data;
+					return _this2.fees = data;
+				});
+				this.showFees = true;
+			}
+		},
+		onFeesCheck: function onFeesCheck(e, amount) {
+			if (e.target.checked) {
+				this.total += amount;
+			} else {
+				this.total -= amount;
+			}
+		}
+	},
+	created: function created() {
+		this.fetchStudents();
+		this.fetchFees();
+	}
+});
+
+/***/ }),
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43212,6 +43295,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     }
 });
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

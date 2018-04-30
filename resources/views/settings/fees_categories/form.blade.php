@@ -1,33 +1,14 @@
 {{ csrf_field() }}
 
-<div class="form-group{{ $errors->has('school_class_id') ? ' has-error' : '' }}">
-	<label for="name" class="col-md-4 control-label">Select Class:</label>
-	 <div class="col-md-6">
-	    <select class="form-control" id="school_class_id" name="school_class_id">
-	        <option selected disabled>Choose a class...</option>
-	        @if (count($schoolClasses) > 0) 
-	            @foreach ($schoolClasses as $schoolClass)
-	                <option 
-	                	value="{{ $schoolClass->id }}"{{ old('school_class_id', optional($feesCategory->schoolClass)->id) == $schoolClass->id ? ' selected' : '' }}>
-	                		{{ $schoolClass->name}}
-	            	</option>
-	            @endforeach
-	        @endif
-	    </select>
-
-		{!! $errors->first('school_class_id', '<span class="help-block">:message</span>') !!}
-	</div>
-</div>
-
-<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-	<label for="name" class="col-md-4 control-label">Fees Category Name:</label>
+<div class="form-group{{ $errors->has('fees_category') ? ' has-error' : '' }}">
+	<label for="fees_category" class="col-md-4 control-label">Fees Category:</label>
 	 <div class="col-md-6">
 		<input type="text" 
 			class="form-control" 
-			value="{{ old('name', $feesCategory->name) }}" 
-			id="name" name="name">
+			value="{{ old('fees_category', $feesCategory->fees_category) }}" 
+			id="fees_category" name="fees_category">
 
-		{!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+		{!! $errors->first('fees_category', '<span class="help-block">:message</span>') !!}
 	</div>
 </div>
 

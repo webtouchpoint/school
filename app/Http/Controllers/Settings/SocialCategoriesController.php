@@ -15,8 +15,8 @@ class SocialCategoriesController extends Controller
      */
     public function index()
     {
-        $socialCategories = SocialCategory::all();
-
+        $socialCategories = SocialCategory::orderBy('created_at', 'desc')
+            ->get();
         return view('settings.social_categories.index', compact('socialCategories'));
     }
 
@@ -46,7 +46,8 @@ class SocialCategoriesController extends Controller
 
         flash('Social category has been saved!');
 
-        return redirect(route('social-categories.index'));
+        return redirect()
+            ->route('social-categories.index');
     }
 
     /**
@@ -88,7 +89,8 @@ class SocialCategoriesController extends Controller
 
         flash('Social category has been updated!');
 
-        return redirect(route('social-categories.index'));
+        return redirect()
+            ->route('social-categories.index');
     }
 
     /**

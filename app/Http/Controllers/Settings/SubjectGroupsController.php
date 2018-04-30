@@ -16,8 +16,8 @@ class SubjectGroupsController extends Controller
      */
     public function index()
     {
-        $subjectGroups = SubjectGroup::all();
-        
+        $subjectGroups = SubjectGroup::orderBy('created_at', 'desc')
+            ->get();
         return view('settings.subject_groups.index', compact('subjectGroups'));
     }
 

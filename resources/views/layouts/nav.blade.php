@@ -19,7 +19,8 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-            <!-- Student Links -->
+                <li class="active"><a href="#">{{ optional($current_session_data)->session }} <span class="sr-only">(current)</span></a></li>
+                <!-- Student Links -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                        Student <span class="caret"></span>
@@ -30,6 +31,21 @@
                         </li>
                         <li>
                             <a href="{{ route('students.index') }}">All Student</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Fees Links -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                       Accounts <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ route('accounts-heads.index') }}">Accounts Head</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('accounts.fees-collection.showFeesPaymentForm') }}">Fees Collection</a>
                         </li>
                     </ul>
                 </li>

@@ -31,7 +31,8 @@ class CreateFeesStructuresTable extends Migration
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
-            $table->string('name');
+            $table->string('fees_heading');
+            $table->string('month_year')->nullable();
             $table->double('amount');
             $table->string('description')->nullable();
             $table->softDeletes();

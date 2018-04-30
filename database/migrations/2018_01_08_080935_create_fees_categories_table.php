@@ -15,15 +15,11 @@ class CreateFeesCategoriesTable extends Migration
     {
         Schema::create('fees_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('school_class_id')->index();
-            $table->foreign('school_class_id')
-                ->references('id')->on('school_classes')
-                ->onDelete('cascade');
             $table->unsignedInteger('user_id')->index();
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
-            $table->string('name')->unique();
+            $table->string('fees_category')->unique();
             $table->string('description')->nullable();
             $table->softDeletes();
             $table->timestamps();

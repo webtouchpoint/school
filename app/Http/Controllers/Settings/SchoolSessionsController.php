@@ -16,7 +16,8 @@ class SchoolSessionsController extends Controller
      */
     public function index()
     {
-        $schoolSessions = SchoolSession::all();
+        $schoolSessions = SchoolSession::orderBy('created_at', 'desc')
+            ->get();
 
         return view('settings.school_sessions.index', compact('schoolSessions'));
     }
@@ -118,7 +119,7 @@ class SchoolSessionsController extends Controller
     public function showSetSessionForm()
     {
         return view('settings.school_sessions.set_session', [
-            'schoolSessions' => SchoolSession::select(['id', 'session'])->get()
+            'schoolSessions' => SchoolSession::select(['id', 'session', 'is_current'])->get()
         ]);
     }
 

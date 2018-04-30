@@ -17,6 +17,7 @@ window.Vue = require('vue');
 Vue.component('subject-form-view', require('./views/settings/SubjectFormView.vue'));
 Vue.component('fees-structure-form-view', require('./views/settings/FeesStructureFormView.vue'));
 Vue.component('admission-form-view', require('./views/students/AdmissionFormView.vue'));
+Vue.component('fees-payment-form-view', require('./views/accounts/fees_collection/PaymentFormView.vue'));
 
 import destroy from './mixins/destroy';
 

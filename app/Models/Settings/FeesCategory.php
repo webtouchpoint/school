@@ -2,7 +2,7 @@
 
 namespace App\Models\Settings;
 
-use App\Model\Model;
+use App\Models\Model;
 
 class FeesCategory extends Model
 {
@@ -17,21 +17,8 @@ class FeesCategory extends Model
         'deleted_at'
     ];
 
-    public function schoolClass()
-    {
-        return $this->belongsTo(SchoolClass::class, 'school_class_id');
-    }
-
     public function feesStructures()
     {
         return $this->hasMany(FeesStructure::class, 'fees_category_id');
-    }
-
-    /**
-     * Get all of the subjects for the class.
-     */
-    public function FeesStructuresThroughClass()
-    {
-        return $this->hasManyThrough(FeesStructure::class, SchoolClass::class);
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Models\Settings;
 
-use App\Model\Model;
+use Carbon\Carbon;
+use App\Models\Model;
+use App\Models\Students\AcademicInfo;
 
 class FeesStructure extends Model
 {
@@ -30,5 +32,11 @@ class FeesStructure extends Model
     public function schoolSession()
     {
         return $this->belongsTo(SchoolSession::class, 'school_session_id');
+    }
+
+    public function academicInfos()
+    {
+        return $this->belongsToMany(AcademicInfo::class, 'fee_student', 'fees_structure_id', 'academic_info_id')
+            ->withPivot('effective_from', 'amount', 'discount', 'paid');
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Settings;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Settings\SchoolClass;
+use App\Models\Settings\FeesCategory;
+use App\Models\Students\AcademicInfo;
 use App\Models\Settings\FeesStructure;
 use App\Models\Settings\SchoolSession;
 
@@ -17,7 +19,8 @@ class FeesStructuresController extends Controller
      */
     public function index()
     {
-        $feesStructures = FeesStructure::all();
+        $feesStructures = FeesStructure::orderBy('created_at', 'desc')
+            ->get();
         
         return view('settings.fees_structures.index', compact('feesStructures'));
     }
@@ -32,7 +35,8 @@ class FeesStructuresController extends Controller
         return view('settings.fees_structures.create', [
             'feesStructure' => new FeesStructure,
             'schoolSessions' => SchoolSession::select('id', 'session')->get(),
-            'schoolClasses' => SchoolClass::select('id', 'name')->get()
+            'schoolClasses' => SchoolClass::select('id', 'name')->get(),
+            'feesCategories' => FeesCategory::select('id', 'fees_category')->get()
         ]);
     }
 
@@ -46,7 +50,13 @@ class FeesStructuresController extends Controller
     {
         $validatedData = $this->validateData($request);
 
-        FeesStructure::create($validatedData);
+        $feesStructure = FeesStructure::create($validatedData);
+
+        if ($request->has('month_year'))
+        {
+            $feesStructure->month_year = $request->month_year;
+            $feesStructure->save();
+        }
 
         flash('Fees Structure has been saved!');
 
@@ -76,7 +86,8 @@ class FeesStructuresController extends Controller
        return view('settings.fees_structures.edit', [
             'feesStructure' => $feesStructure,
             'schoolSessions' => SchoolSession::select('id', 'session')->get(),
-            'schoolClasses' => SchoolClass::select('id', 'name')->get()
+            'schoolClasses' => SchoolClass::select('id', 'name')->get(),
+            'feesCategories' => FeesCategory::select('id', 'fees_category')->get()
         ]);
     }
 
@@ -118,9 +129,17 @@ class FeesStructuresController extends Controller
             'school_session_id' => 'required',
             'school_class_id' => 'required',
             'fees_category_id' => 'required',
-            'name' => 'required',
+            'fees_heading' => 'required',
             'amount' => 'required|numeric',
             'description' => 'nullable'
         ]);
+    }
+
+    public function fetchByAcademicInfoId($academicInfo_id)
+    {
+        $academicInfo = AcademicInfo::findOrFail($academicInfo_id);
+        $fees = $academicInfo->feesStructures()->where('paid', 0)->get();
+
+        return $fees;
     }
 }

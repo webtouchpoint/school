@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Settings\SchoolClass;
 use App\Models\Students\AcademicInfo;
+use App\Services\AssignFeesToStudent;
 use App\Models\Settings\SchoolSession;
+use App\Http\Resources\Students\Students;
 use App\Http\Requests\Students\AdmissionFormRequest;
 
 class StudentsController extends Controller
@@ -20,7 +22,9 @@ class StudentsController extends Controller
      */
     public function index(Request $request)
     {        
-        $academicInfos = AcademicInfo::all();
+        $academicInfos = AcademicInfo::where('school_session_id', $request->current_school_session_id)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('students.index', compact('academicInfos'));
     }
@@ -46,18 +50,19 @@ class StudentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdmissionFormRequest $request)
+    public function store(AdmissionFormRequest $request, AssignFeesToStudent $assignFeesToStudent)
     {
-        DB::transaction(function () use ($request) {
+        DB::transaction(function () use ($request, $assignFeesToStudent) {
             $request->merge(['date_of_admission' => date('Y-m-d')]);
 
             $studentData =  collect($request->all());
-            $studentData = $studentData->except(['school_session_id', 'school_class_id', 'section_id', 'roll_number'])
+            $studentData = $studentData->except(['current_school_session_id', 'school_session_id', 'school_class_id', 'section_id', 'roll_number', 'total_marks', 'marks_obtained'])
                 ->toArray();
 
             $student = Student::create($studentData);
 
             $academicInfo =  new AcademicInfo([
+                'user_id' => $request->user_id,
                 'school_session_id' => $request->school_session_id,
                 'school_class_id' => $request->school_class_id,
                 'section_id' => $request->section_id,
@@ -66,6 +71,8 @@ class StudentsController extends Controller
 
             if ($student) {
                 $student->academicInfos()->save($academicInfo);
+
+                $assignFeesToStudent->assign($academicInfo);
             }
         });
 
@@ -92,9 +99,9 @@ class StudentsController extends Controller
      * @param  \App\Models\Students\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit(Student $student, Request $request)
     {
-        $academicInfo = $student->academicInfos()->where('school_session_id', 2)->first();
+        $academicInfo = $student->academicInfos()->where('school_session_id', $request->current_school_session_id)->first();
         return view('students.edit', [
             'schoolSessions' => SchoolSession::select('id', 'session')->get(),
             'schoolClasses' => SchoolClass::select('id', 'name')->get(),
@@ -114,12 +121,13 @@ class StudentsController extends Controller
     {
         DB::transaction(function () use ($student, $request) {
             $studentData = collect($request->all());
-            $studentData = $studentData->except(['school_session_id', 'school_class_id', 'section_id', 'roll_number'])
+            $studentData = $studentData->except(['current_school_session_id', 'school_session_id', 'school_class_id', 'section_id', 'roll_number', 'total_marks', 'marks_obtained'])
                 ->toArray();
 
             $student->update($studentData);
 
-            if ($academicInfo = $student->academicInfos()->where('school_session_id', 2)->first()) {
+            if ($academicInfo = $student->academicInfos()->where('school_session_id', $request->current_school_session_id)->first()) {
+                $academicInfo->user_id = $request->user_id;
                 $academicInfo->school_session_id = $request->school_session_id;
                 $academicInfo->school_class_id = $request->school_class_id;
                 $academicInfo->section_id = $request->section_id;
@@ -146,5 +154,14 @@ class StudentsController extends Controller
         flash('"'.$student->name.'" student has been deleted!');
         $student->delete();
         return back();
+    }
+
+    public function fetchBySchoolClassId($school_session_id, $school_class_id)
+    {
+        $academicInfos = AcademicInfo::where('school_session_id', $school_class_id)
+                            ->where('school_class_id', $school_class_id)
+                            ->get();
+
+        return Students::collection($academicInfos);
     }
 }

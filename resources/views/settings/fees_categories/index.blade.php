@@ -20,7 +20,7 @@
 	<table class="table table-bordered" id="fees-category-table">
 	    <thead>
 	        <th>Serial</th>
-	        <th>Name</th>
+	       	<th>Fees Category</th>
 	        <th>Description</th>
 			<th data-sortable="false">Actions</th>
 	    </thead>   
@@ -30,8 +30,8 @@
 	                <td>
 	                    {{ $loop->index + 1 }}
 	                </td>
-	                <td>
-	                    {{ $feesCategory->name }}
+	               	<td>
+	                    {{ $feesCategory->fees_category }}
 	                </td>
 	                <td>
 	                    {{ $feesCategory->description }}
@@ -44,7 +44,7 @@
 		                <button type="button" class="btn btn-xs btn-danger"
    	                        @click="destroy(
 								'{{ $feesCategory->id }}',
-								'{{ $feesCategory->name }}', 
+								'{{ $feesCategory->fees_category }}', 
 								'fees category',
 								'/settings/fees-categories/', 
 								'#modal-delete-fees-category'

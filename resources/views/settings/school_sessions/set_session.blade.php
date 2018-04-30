@@ -29,7 +29,8 @@
 								<option selected disabled>Pick a session...</option>
 								@foreach($schoolSessions as $schoolSession)
 									<option 
-										value="{{ $schoolSession->id }}" {{ old('session') == $schoolSession->id ? 'selected' : '' }}>
+										value="{{ $schoolSession->id }}" {{ old('session') == $schoolSession->id ? 'selected' : '' }}
+										{{ $schoolSession->is_current == 1 ? 'selected' : ''}}>
 											{{ $schoolSession->session }}
 									</option>
 								@endforeach
@@ -50,4 +51,3 @@
     </div>
 </div>
 @endsection
-{{ csrf_field() }}

@@ -15,7 +15,8 @@ class SchoolClassesController extends Controller
      */
     public function index()
     {
-        $schoolClasses =  SchoolClass::all();
+        $schoolClasses =  SchoolClass::orderBy('created_at', 'desc')
+            ->get();
 
         return view('settings.school_classes.index', compact('schoolClasses'));
     }

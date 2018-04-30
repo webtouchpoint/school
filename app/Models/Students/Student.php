@@ -3,7 +3,7 @@
 namespace App\Models\Students;
 
 use Carbon\Carbon;
-use App\Model\Model;
+use App\Models\Model;
 use App\Models\Settings\SchoolClass;
 
 class Student extends Model

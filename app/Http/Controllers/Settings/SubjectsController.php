@@ -16,7 +16,8 @@ class SubjectsController extends Controller
      */
     public function index()
     {
-        $subjects = Subject::all();
+        $subjects = Subject::orderBy('created_at', 'desc')
+            ->get();
 
         return view('settings.subjects.index', compact('subjects'));
     }

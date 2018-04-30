@@ -12,7 +12,6 @@
 	                	{{ old('school_session_id', optional($feesStructure->schoolSession)->id) == $schoolSession->id ? ' selected' : '' }}>
 	                		{{ $schoolSession->session}}
 	            	</option>
-	            	{{ $schoolSession }}
 	            @endforeach
 	        @endif
 	    </select>
@@ -24,7 +23,7 @@
 <div class="form-group{{ $errors->has('school_class_id') ? ' has-error' : '' }}">
 	<label for="name" class="col-md-4 control-label">Select Class:</label>
 	 <div class="col-md-6">
-	    <select class="form-control" id="school_class_id" name="school_class_id" @change="onClassChange">
+	    <select class="form-control" id="school_class_id" name="school_class_id">
 	        <option selected disabled>Choose a class...</option>
 	        @if (count($schoolClasses) > 0) 
 	            @foreach ($schoolClasses as $schoolClass)
@@ -33,7 +32,6 @@
 	                	{{ old('school_class_id', optional($feesStructure->schoolClass)->id) == $schoolClass->id ? ' selected' : '' }}>
 	                		{{ $schoolClass->name}}
 	            	</option>
-	            	{{ $schoolClass }}
 	            @endforeach
 	        @endif
 	    </select>
@@ -42,33 +40,47 @@
 	</div>
 </div>
 
- <div class="form-group{{ $errors->has('fees_category_id') ? ' has-error' : '' }}" v-if="showFeesCategory">
+<div class="form-group{{ $errors->has('fees_category_id') ? ' has-error' : '' }}">
     <label for="group" class="col-md-4 control-label">Select Fees Category:</label>
-    <div class="col-md-6">
-	    <select class="form-control" id="fees_category_id" name="fees_category_id">
-	    	<option selected disabled>Choose a group...</option>
-	        @if(old('fees_category_id', optional($feesStructure->feesCategory)->id))
-	            <option v-for="feesCategory in feesCategories"
-	                :value="feesCategory.id" 
-	                v-text="feesCategory.name"
-	          		:selected="{{ json_encode(old('fees_category_id', optional($feesStructure->feesCategory)->id)) }} == feesCategory.id ? true : false"></option>
-	        @else
-	            <option v-for="feesCategory in feesCategories" :value="feesCategory.id" v-text="feesCategory.name"></option>
+	 <div class="col-md-6">
+	    <select class="form-control" id="fees_category_id" name="fees_category_id" @change="onFeesCategoryChange">
+	        <option selected disabled>Choose a fees category...</option>
+	        @if (count($feesCategories) > 0) 
+	            @foreach ($feesCategories as $fees_category)
+	                <option 
+	                	value="{{ $fees_category->id }}"
+	                	{{ old('fees_category_id', optional($feesStructure->feesCategory)->id) == $fees_category->id ? ' selected' : '' }}>
+	                		{{ $fees_category->fees_category}}
+	            	</option>
+	            @endforeach
 	        @endif
-    	</select>
-    	{!! $errors->first('fees_category_id', '<span class="help-block">:message</span>') !!}
+	    </select>
+
+		{!! $errors->first('fees_category_id', '<span class="help-block">:message</span>') !!}
 	</div>
 </div>
 
-<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-	<label for="name" class="col-md-4 control-label">Name:</label>
+<div class="form-group{{ $errors->has('fees_heading') ? ' has-error' : '' }}">
+	<label for="fees_heading" class="col-md-4 control-label">Fees Heading:</label>
 	 <div class="col-md-6">
 		<input type="text" 
 			class="form-control" 
-			value="{{ old('name', $feesStructure->name) }}" 
-			id="name" name="name">
+			value="{{ old('fees_heading', $feesStructure->fees_heading) }}" 
+			id="fees_heading" name="fees_heading">
 
-		{!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+		{!! $errors->first('fees_heading', '<span class="help-block">:message</span>') !!}
+	</div>
+</div>
+
+<div class="form-group{{ $errors->has('month_year') ? ' has-error' : '' }}" v-show="isMonthlyFee">
+	<label for="month_year" class="col-md-4 control-label">Month Year:</label>
+	 <div class="col-md-6">
+		<input type="text" 
+			class="form-control monthpicker" 
+			value="{{ old('month_year', $feesStructure->month_year) }}" 
+			id="month_year" name="month_year">
+
+		{!! $errors->first('month_year', '<span class="help-block">:message</span>') !!}
 	</div>
 </div>
 

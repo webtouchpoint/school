@@ -24,6 +24,7 @@ class AdmissionFormRequest extends FormRequest
     public function rules()
     {
         return [
+            'current_school_session_id' => 'required',
             'user_id' => 'required',
             'school_session_id' => 'required',
             'school_class_id' => 'required',

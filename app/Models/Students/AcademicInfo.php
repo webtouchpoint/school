@@ -2,8 +2,9 @@
 
 namespace App\Models\Students;
 
-use App\Model\Model;
+use App\Models\Model;
 use App\Models\Settings\SchoolClass;
+use App\Models\Settings\FeesStructure;
 use App\Models\Settings\SchoolSession;
 
 class AcademicInfo extends Model
@@ -17,6 +18,12 @@ class AcademicInfo extends Model
 	{
 		return $this->belongsTo(SchoolClass::class);
 	}
+
+    public function feesStructures()
+    {
+        return $this->belongsToMany(FeesStructure::class, 'fee_student', 'academic_info_id', 'fees_structure_id')
+            ->withPivot('effective_from', 'amount', 'discount', 'paid');
+    }
 
 	 /**
      * Scope a query to only include current sesssion's student.

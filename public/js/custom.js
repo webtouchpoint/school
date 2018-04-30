@@ -13,6 +13,12 @@ $(document).ready(function () {
 	    format: 'dd-mm-yyyy',
 	    autoclose: true
 	});
+	$('.monthpicker').datepicker({
+	 	format: "mm-yyyy",
+	    viewMode: "months", 
+	    minViewMode: "months",
+	    autoclose: true
+	});
 });
 
 $('#flash-overlay-modal').modal();

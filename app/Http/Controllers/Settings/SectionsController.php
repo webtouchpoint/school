@@ -17,7 +17,9 @@ class SectionsController extends Controller
      */
     public function index(Request $request)
     {
-        $sections = Section::with('schoolClass')->get();
+        $sections = Section::with('schoolClass')
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('settings.sections.index', compact('sections'));
     }
 

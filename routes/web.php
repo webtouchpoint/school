@@ -35,18 +35,29 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		// Subject
 		Route::resource('subjects', 'SubjectsController');
 		// Fees Category
-		Route::get('/fees-categories/fetch-by-class-id/{school_class_id}', 'FeesCategoriesController@fetchBySchoolClassId');
 		Route::resource('fees-categories', 'FeesCategoriesController');
 		// Fees Structures
+		Route::get('/fees-structures/fetch-by-academicInfo-id/{academicInfo_id}', 'FeesStructuresController@fetchByAcademicInfoId');
 		Route::resource('fees-structures', 'FeesStructuresController');
 		// Social Category
 		Route::resource('social-categories', 'SocialCategoriesController');
 
 	});
 
-	Route::namespace('students')->group(function () {
+	Route::middleware('currentSchoolSession')->namespace('students')->group(function () {
 		// Student
+		Route::get('/students/fetch-by-class-id/{school_session_id}/{school_class_id}', 'StudentsController@fetchBySchoolClassId');
 		Route::resource('students', 'StudentsController');
+	});
+
+	Route::prefix('accounts')->namespace('accounts')->group(function () {
+		// Accounts Heads
+		Route::resource('accounts-heads', 'AccountsHeadsController');
+		// Fees Collection
+		Route::prefix('fees-collection')->namespace('feesCollection')->group(function () {
+			Route::get('payment', 'PaymentController@showFeesPaymentForm')->name('accounts.fees-collection.showFeesPaymentForm');
+			Route::post('payment', 'PaymentController@payment')->name('acconts.fees-collection.payment');
+		});
 	});
 });
 

@@ -24,6 +24,7 @@
 			{!! $errors->first('school_session_id', '<span class="help-block">:message</span>') !!}
 		</div>
 	</div>
+	
 	<div class="col-md-3">
 		<div class="form-group{{ $errors->has('school_class_id') ? ' has-error' : '' }}">
 			<label for="school_class_id" class="control-label">Class:</label>
@@ -52,7 +53,7 @@
 		    	class="form-control" 
 		    	id="section_id" 
 		    	name="section_id">
-		    	<option selected disabled>Choose a group...</option>
+		    	<option selected disabled>Choose a section...</option>
 		        @if(old('section_id', optional($academicInfo)->section_id))
 		            <option v-for="section in sections"
 		                :value="section.id" 
@@ -356,6 +357,30 @@
 			{!! $errors->first('last_examination', '<span class="help-block">:message</span>') !!}
 		</div>
 	</div>
+	@if(!$isEdit)
+	<div class="col-md-3">
+		<div class="form-group{{ $errors->has('total_marks') ? ' has-error' : '' }}">
+			<label for="total_marks" class="control-label">Total Marks:</label>
+			<input type="text" 
+				class="form-control" 
+				value="{{ old('total_marks', $student->total_marks) }}" 
+				id="total_marks" name="total_marks" @keyup="calculatePercentage">
+
+			{!! $errors->first('total_marks', '<span class="help-block">:message</span>') !!}
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="form-group{{ $errors->has('marks_obtained') ? ' has-error' : '' }}">
+			<label for="marks_obtained" class="control-label">Marks Obtained:</label>
+			<input type="text" 
+				class="form-control" 
+				value="{{ old('marks_obtained', $student->marks_obtained) }}" 
+				id="marks_obtained" name="marks_obtained" @keyup="calculatePercentage">
+
+			{!! $errors->first('marks_obtained', '<span class="help-block">:message</span>') !!}
+		</div>
+	</div>
+	@endif
 	<div class="col-md-3">
 		<div class="form-group{{ $errors->has('percentage_of_marks_obtained') ? ' has-error' : '' }}">
 			<label for="percentage_of_marks_obtained" class="control-label">&#37; Marks Obtained:</label>
@@ -367,8 +392,10 @@
 			{!! $errors->first('percentage_of_marks_obtained', '<span class="help-block">:message</span>') !!}
 		</div>
 	</div>
-	<div class="col-md-3">&nbsp;</div>
-	<div class="col-md-3">&nbsp;</div>
+	@if($isEdit) 
+		<div class="col-md-3">&nbsp;</div>
+		<div class="col-md-3">&nbsp;</div>
+	@endif
 </div> <!-- ./row -->
 
 <div>

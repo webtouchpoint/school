@@ -16,7 +16,9 @@
                <form role="form" method="POST" action="{{ route('students.update', $student->id) }}">
                     {{ method_field('PATCH') }}
 
-                    @include('students.form')
+                    @include('students.form', [
+                        'isEdit' => true
+                    ])
                 </form>
             @endcomponent
         </div>
