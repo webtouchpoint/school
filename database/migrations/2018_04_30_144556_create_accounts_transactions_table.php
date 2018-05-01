@@ -27,8 +27,9 @@ class CreateAccountsTransactionsTable extends Migration
                 
             $table->double('amount');
             $table->string('mode')->nullable();
-            $table->string('description')->nullable();
-            $table->string('remarks')->nullable();
+            $table->string('purpose');
+            $table->string('remark')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

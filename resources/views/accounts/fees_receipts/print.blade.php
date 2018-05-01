@@ -12,7 +12,7 @@
 		table.fancy tr:hover{background-color:#ddd;}
 		</style>
 </head>
-<body>
+<body onLoad="printPage()">
 	<center>
 		<div  style="width:100%">
 			<h1 style='margin:0px'><center>{{ strtoupper($school->name) }}</center></h1>

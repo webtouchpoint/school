@@ -22,6 +22,7 @@ class CreateAccountsHeadsTable extends Migration
             $table->enum('category', ['income','expenditure']);
             $table->string('accounts_head');
             $table->boolean('is_active');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

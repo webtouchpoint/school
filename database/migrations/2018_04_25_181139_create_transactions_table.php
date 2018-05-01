@@ -33,6 +33,7 @@ class CreateTransactionsTable extends Migration
             $table->double('amount');
             $table->string('description')->nullable();
             $table->string('remarks')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -30,7 +30,7 @@ class PaymentController extends Controller
         DB::transaction(function () use($request, $payment) {
             $payment->pay($request);
         });
-
+        flash('Fees paid successfully!');
         return redirect()
             ->route('fees-receipts.index', $request->academicInfo_id);
     }

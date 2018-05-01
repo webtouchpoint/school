@@ -45,6 +45,9 @@
                             <a href="{{ route('accounts-heads.index') }}">Accounts Head</a>
                         </li>
                         <li>
+                            <a href="{{ route('accounts-transactions.index') }}">Income/Expense</a>
+                        </li>
+                        <li>
                             <a href="{{ route('accounts.fees-collection.showFeesPaymentForm') }}">Fees Collection</a>
                         </li>
                     </ul>

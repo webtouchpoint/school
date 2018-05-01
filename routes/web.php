@@ -60,7 +60,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		});
 		// Fees Receipts
 		Route::get('fees-receipts/{academic_info_id}', 'FeesReceiptsController@index')->name('fees-receipts.index');
-		Route::get('fees-receipts/print/{accounts_transaction_id}/{academic_info_id}', 'FeesReceiptsController@print')->name('fees-receipts.print');
+		Route::get('fees-receipts/print/{accounts_transaction_id}/{academic_info_id}', 'FeesReceiptsController@print')
+			->name('fees-receipts.print');
+		Route::resource('accounts-transactions', 'AccountsTransactionsController');
 	});
 });
 

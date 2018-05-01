@@ -133,10 +133,10 @@
 					<div class="form-group" v-show="total > 0">
 						 <div class="col-md-6">
 							<textarea class="form-control" 
-								id="remarks" 
-								name="remarks"
+								id="remark" 
+								name="remark"
 								rows="5"
-								placeholder="Remarks"></textarea>
+								placeholder="Remark"></textarea>
 						</div>
 						<div class="col-md-6">
 							<select class="form-control" id="mode" name="mode" @change="onAccountsHeadAndPaymentModeChange">

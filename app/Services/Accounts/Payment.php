@@ -31,7 +31,8 @@ class Payment
 			$accountsTransaction->accounts_head_id = $request->accounts_head_id;
 			$accountsTransaction->amount = $request->amount;
 			$accountsTransaction->mode = $request->mode;
-			$accountsTransaction->remarks = $request->remarks;
+			$accountsTransaction->purpose = 'fees payment by student id'.$request->academicInfo_id;
+			$accountsTransaction->remark = $request->remark;
 			$accountsTransaction->save();
 
 			return $accountsTransaction->id;

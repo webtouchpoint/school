@@ -39,7 +39,8 @@ class CreateAcademicInfosTable extends Migration
             $table->foreign('section_id')
                 ->references('id')->on('sections')
                 ->onDelete('cascade');
-             $table->unsignedInteger('roll_number')->nullable()->index();
+            $table->unsignedInteger('roll_number')->nullable()->index();
+            $table->softDeletes();
             $table->timestamps();
         });
 
