@@ -63,6 +63,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::get('fees-receipts/print/{accounts_transaction_id}/{academic_info_id}', 'FeesReceiptsController@print')
 			->name('fees-receipts.print');
 		Route::resource('accounts-transactions', 'AccountsTransactionsController');
+		Route::get('balance-sheet', 'BalanceSheetController@showBalanceSheet')->name('accounts.balance-sheet');
 	});
 });
 

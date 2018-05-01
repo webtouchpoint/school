@@ -70,12 +70,12 @@
 						        @if(old('academicInfo_id'))
 						            <option v-for="academicInfo in academicInfos"
 						                :value="academicInfo.id" 
-						                v-text="academicInfo.id + ' - ' + academicInfo.name"
+						                v-text="academicInfo.name + ' - ' + academicInfo.id"
 						          		:selected="{{ json_encode(old('academicInfo_id')) }} == academicInfo.id ? true : false"></option>
 						        @else
 						            <option v-for="academicInfo in academicInfos" 
 						            	:value="academicInfo.id" 
-						            	v-text="academicInfo.id + ' - ' + academicInfo.name"></option>
+						            	v-text="academicInfo.name + ' - ' + academicInfo.id"></option>
 						        @endif
 					    	</select>
 					    	{!! $errors->first('academicInfo_id', '<span class="help-block">:message</span>') !!}

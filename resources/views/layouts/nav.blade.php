@@ -50,6 +50,9 @@
                         <li>
                             <a href="{{ route('accounts.fees-collection.showFeesPaymentForm') }}">Fees Collection</a>
                         </li>
+                        <li>
+                            <a href="{{ route('accounts.balance-sheet') }}">Balance Sheet</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -63,35 +66,32 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{{ route('fees-structures.index') }}">Fees Structures</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('fees-categories.index') }}">Fees Category</a>
-                        </li>
-                       <li>
-                            <a href="{{ route('subjects.index') }}">Subject</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('subject-groups.index') }}">Subject Group</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('social-categories.index') }}">Social Category</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('sections.index') }}">Section</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('school-classes.index') }}">Class</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('school-sessions.show-set-session-form') }}">Set Current Session</a>
+                            <a href="{{ route('school.edit', 1) }}">School</a>
                         </li>
                         <li>
                             <a href="{{ route('school-sessions.index') }}">Session</a>
-                        </li>
+                        </li>  
                         <li>
-                            <a href="{{ route('school.edit', 1) }}">School</a>
-                        </li>
+                            <a href="{{ route('school-sessions.show-set-session-form') }}">Set Current Session</a>
+                        </li>                            
+                        <li>
+                            <a href="{{ route('school-classes.index') }}">Class</a>
+                        </li>                        
+                        <li>
+                            <a href="{{ route('sections.index') }}">Section</a>
+                        </li>  
+                        <li>
+                            <a href="{{ route('social-categories.index') }}">Social Category</a>
+                        </li>                              
+                        <li>
+                            <a href="{{ route('subject-groups.index') }}">Subject Group</a>
+                        </li>   
+                        <li>
+                            <a href="{{ route('fees-categories.index') }}">Fees Category</a>
+                        </li>                                                                   
+                        <li>
+                            <a href="{{ route('fees-structures.index') }}">Fees Structures</a>
+                        </li>            
                     </ul>
                 </li>
                 @guest
