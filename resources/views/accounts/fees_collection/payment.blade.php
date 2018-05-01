@@ -131,6 +131,44 @@
 					</div>
 
 					<div class="form-group" v-show="total > 0">
+						 <div class="col-md-6">
+							<textarea class="form-control" 
+								id="remarks" 
+								name="remarks"
+								rows="5"
+								placeholder="Remarks"></textarea>
+						</div>
+						<div class="col-md-6">
+							<select class="form-control" id="mode" name="mode" @change="onAccountsHeadAndPaymentModeChange">
+								<option selected disabled>Payment mode...</option>
+								<option value="Cash">Cash</option>
+								<option value="DD">DD</option>
+								<option value="Cheque">Cheque</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group{{ $errors->has('accounts_head_id') ? ' has-error' : '' }}" v-show="total > 0">
+						<label for="accounts_head_id" class="col-md-4 control-label">Select Accounts Head:</label>
+						 <div class="col-md-6">
+
+							<select class="form-control" 
+								id="accounts_head_id" 
+								name="accounts_head_id" @change="onAccountsHeadAndPaymentModeChange">
+								<option selected disabled>Pick Accounts Head...</option>
+								@foreach($accountsHeads as $accountsHead)
+									<option 
+										value="{{ $accountsHead->id }}"{{ old('accounts_head_id') == $accountsHead->id ? ' selected' : '' }}>
+											{{ $accountsHead->accounts_head }}
+									</option>
+								@endforeach
+							</select>
+
+							{!! $errors->first('accounts_head_id', '<span class="help-block">:message</span>') !!}
+						</div>
+					</div>
+
+					<div class="form-group" v-show="showSubmitButton && total > 0">
 					    <div class="col-md-6 col-md-offset-4">
 					        <button type="submit" class="btn btn-primary">Pay</button>&nbsp;<a href="/" class="btn btn-default" role="button">Cancel</a>
 					    </div>

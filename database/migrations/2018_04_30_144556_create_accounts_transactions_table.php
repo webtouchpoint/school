@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransactionsTable extends Migration
+class CreateAccountsTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,24 +13,20 @@ class CreateTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('accounts_transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->index();
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
-                
-            $table->unsignedInteger('fees_structure_id')->index();
-            $table->foreign('fees_structure_id')
-                ->references('id')->on('fees_structures')
-                ->onDelete('cascade');
 
-            $table->unsignedInteger('academic_info_id')->index();
-            $table->foreign('academic_info_id')
-                ->references('id')->on('academic_infos')
+            $table->unsignedInteger('accounts_head_id')->index();
+            $table->foreign('accounts_head_id')
+                ->references('id')->on('accounts_heads')
                 ->onDelete('cascade');
-            $table->unsignedInteger('accounts_transaction_id')->index();
+                
             $table->double('amount');
+            $table->string('mode')->nullable();
             $table->string('description')->nullable();
             $table->string('remarks')->nullable();
             $table->timestamps();
@@ -44,6 +40,6 @@ class CreateTransactionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('accounts_transactions');
     }
 }

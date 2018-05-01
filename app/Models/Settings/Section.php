@@ -18,7 +18,6 @@ class Section extends Model
     ];
 
 
-
     public function schoolClass()
     {
         return $this->belongsTo(SchoolClass::class, 'school_class_id');

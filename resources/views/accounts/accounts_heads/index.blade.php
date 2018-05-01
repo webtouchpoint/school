@@ -17,7 +17,7 @@
 	    </div>
 	</div>
 
-	<table class="table table-bordered" id="social-category-table">
+	<table class="table table-bordered" id="accounts-heads-table">
 	    <thead>
 	        <th>Serial</th>
 	        <th>Category</th>
@@ -87,7 +87,7 @@
 @section('scripts')
   <script>
     $(function() {
-      $("#social-category-table").DataTable({
+      $("#accounts-heads-table").DataTable({
         order: [[0, "asc"]]
       });
     });

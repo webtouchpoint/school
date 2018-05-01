@@ -4,6 +4,7 @@
 			return {
 				showStudent: false,
 				showFees: false,
+				showSubmitButton: false,
 				academicInfos: [],
 				fees: [],
 				total: 0
@@ -42,6 +43,14 @@
 					this.total += amount;
 				} else {
 					this.total -= amount;
+				}
+			},
+			onAccountsHeadAndPaymentModeChange() {
+				let accounts_head_id = $('#accounts_head_id').val();
+				let mode_index = $('#mode')[0].selectedIndex;
+
+				if(accounts_head_id > 0 && mode_index > 0) {
+					this.showSubmitButton = true;
 				}
 			}
 		},

@@ -43206,6 +43206,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			showStudent: false,
 			showFees: false,
+			showSubmitButton: false,
 			academicInfos: [],
 			fees: [],
 			total: 0
@@ -43252,6 +43253,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				this.total += amount;
 			} else {
 				this.total -= amount;
+			}
+		},
+		onAccountsHeadAndPaymentModeChange: function onAccountsHeadAndPaymentModeChange() {
+			var accounts_head_id = $('#accounts_head_id').val();
+			var mode_index = $('#mode')[0].selectedIndex;
+
+			if (accounts_head_id > 0 && mode_index > 0) {
+				this.showSubmitButton = true;
 			}
 		}
 	},

@@ -3,6 +3,7 @@
 namespace App\Models\Students;
 
 use App\Models\Model;
+use App\Models\Settings\Section;
 use App\Models\Settings\SchoolClass;
 use App\Models\Settings\FeesStructure;
 use App\Models\Settings\SchoolSession;
@@ -13,6 +14,11 @@ class AcademicInfo extends Model
 	{
 		return $this->belongsTo(Student::class, 'student_id');
 	}
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class, 'section_id');
+    }
 
 	public function schoolClass()
 	{

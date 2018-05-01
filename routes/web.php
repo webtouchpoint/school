@@ -58,6 +58,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 			Route::get('payment', 'PaymentController@showFeesPaymentForm')->name('accounts.fees-collection.showFeesPaymentForm');
 			Route::post('payment', 'PaymentController@payment')->name('acconts.fees-collection.payment');
 		});
+		// Fees Receipts
+		Route::get('fees-receipts/{academic_info_id}', 'FeesReceiptsController@index')->name('fees-receipts.index');
+		Route::get('fees-receipts/print/{accounts_transaction_id}/{academic_info_id}', 'FeesReceiptsController@print')->name('fees-receipts.print');
 	});
 });
 

@@ -5,6 +5,7 @@ namespace App\Models\Settings;
 use Carbon\Carbon;
 use App\Models\Model;
 use App\Models\Students\AcademicInfo;
+use App\Models\Accounts\FeesCollection\Transaction;
 
 class FeesStructure extends Model
 {
@@ -18,6 +19,11 @@ class FeesStructure extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'fees_structure_id');
+    }
 
     public function feesCategory()
     {
