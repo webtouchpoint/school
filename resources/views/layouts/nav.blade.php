@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
 
@@ -55,6 +55,20 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="{{ route('employees.index') }}">Employees</a>
+                </li>
+                <!-- Fees Links -->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                       Exam Report <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ route('accounts-heads.index') }}">Accounts Head</a>
+                        </li>
+                    </ul>
+                </li>                
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -91,7 +105,10 @@
                         </li>                                                                   
                         <li>
                             <a href="{{ route('fees-structures.index') }}">Fees Structures</a>
-                        </li>            
+                        </li>    
+                        <li>
+                            <a href="{{ route('employee-positions.index') }}">Employee Positions</a>
+                        </li>        
                     </ul>
                 </li>
                 @guest

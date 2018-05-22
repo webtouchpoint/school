@@ -1,61 +1,49 @@
 @extends('layouts.app')
 
 @section('title')
-    Accounts Head
+	Employee Positions
 @endsection
 
 @section('content')
 <div class="container">
 	<div class="row page-title-row">
 	    <div class="col-md-6">
-	        <h3>Accounts Head <small>&raquo; Listing</small></h3>
+	        <h3>Employee Positions <small>&raquo; Listing</small></h3>
 	    </div>
 	    <div class="col-md-6 text-right">
-	        <a href="{{ route('accounts-heads.create') }}" class="btn btn-success btn-md">
-	            <i class="fa fa-plus-circle"></i> New Accounts Head
+	        <a href="{{ route('employee-positions.create') }}" class="btn btn-success btn-md">
+	            <i class="fa fa-plus-circle"></i> New Employee Position
 	        </a>
 	    </div>
 	</div>
 
-	<table class="table table-bordered table-striped" id="accounts-heads-table">
+	<table class="table table-bordered" id="employee-position-table">
 	    <thead>
 	        <th>Serial</th>
-	        <th>Category</th>
-	        <th>Accounts Head</th>
-	        <th>Status</th>
+	        <th>Name</th>
 			<th data-sortable="false">Actions</th>
 	    </thead>   
 	    <tbody>
-	        @forelse ($accountsHeads as $accountsHead)
+	        @forelse ($employeePositions as $employeePosition)
 	            <tr>
 	                <td>
 	                    {{ $loop->index + 1 }}
 	                </td>
 	                <td>
-	                    {{ $accountsHead->category }}
+	                    {{ $employeePosition->name }}
 	                </td>
 	                <td>
-	                    {{ $accountsHead->accounts_head }}
-	                </td>
-	                <td>
-	                    @if($accountsHead->is_active == 1)
-	                     	<span class="text-success"><i class="fa fa-circle" aria-hidden="true"></i></span>
-	                     @else
-	                     	<span class="text-warning"><i class="fa fa-circle" aria-hidden="true"></i></span>
- 						@endif
-	                </td>
-	                <td>
-	                    <a href="{{ route('accounts-heads.edit', $accountsHead->id) }}"
+	                    <a href="{{ route('employee-positions.edit', $employeePosition->id) }}"
 	                        class="btn btn-xs btn-info">
 	                        <i class="fa fa-edit"></i> Edit
 	                    </a> 
 		                <button type="button" class="btn btn-xs btn-danger"
    	                        @click="destroy(
-								'{{ $accountsHead->id }}',
-								'{{ $accountsHead->accounts_head }}', 
-								'accounts head',
-								'/accounts/accounts-heads/', 
-								'#modal-delete-accounts-head'
+								'{{ $employeePosition->id }}',
+								'{{ $employeePosition->name }}', 
+								'employee position',
+								'/settings/employee-positions/', 
+								'#modal-delete-employee-position'
 	                        )">
 	                        <i class="fa fa-times-circle fa-lg"></i>
 	                        Delete
@@ -64,8 +52,8 @@
 	            </tr>
 	        @empty
 	            <tr>
-	                <td colspan="5">
-	                    No Accounts Head exists.
+	                <td colspan="4">
+	                    No Employee Position exists.
 	                </td>
 	            </tr>
 	        @endforelse
@@ -75,7 +63,7 @@
 
 @component('components.deleteConfirmationModal')
   	@slot('modal_id')
-        modal-delete-accounts-head
+        modal-delete-employee-position
     @endslot
 	Are you sure you want to delete the
 	<kbd><span>@{{ name }}</span></kbd>
@@ -87,7 +75,7 @@
 @section('scripts')
   <script>
     $(function() {
-      $("#accounts-heads-table").DataTable({
+      $("#employee-position-table").DataTable({
         order: [[0, "asc"]]
       });
     });

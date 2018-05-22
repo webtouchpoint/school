@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Progress | Sign In</title>
+    <title>Progress | Log In</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -24,7 +24,8 @@
       <form class="form-signin" method="POST" action="{{ route('login') }}">
 
         {{ csrf_field() }}
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <!-- <h2 class="form-signin-heading">Please log in</h2> -->
+        <img src="{{ asset('images/login.png') }}" height="150" width="150" alt="Log in" class="img-circle center">
         <label for="username" class="sr-only">Email address</label>
         <input type="text" id="username" name="username" class="form-control" placeholder="Username" value="{{ old('username') }}" required autofocus>
         <label for="password" class="sr-only">Password</label>
@@ -34,7 +35,7 @@
             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
       </form>
         @if ($errors->any())
             <div class="alert alert-danger">

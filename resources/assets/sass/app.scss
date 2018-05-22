@@ -1,30 +1,33 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,600);
 
-$btn-font-weight: 300;
-
-$font-family-sans-serif: "Roboto", Helvetica, Arial, sans-serif;
+// Variables
+@import "variables";
 
 // Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
-
-
-
-body, label, .checkbox label {
-  font-weight: 300;
-}
-
-
-
-@import "components/panel";
-
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 // Fontawesome
 @import "../libs/font-awesome/scss/font-awesome";
 
+label {
+	font-weight: 300;
+}
 
+.form-title {
+    padding: 7px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    size: 30px!important;
+}
 
+.home .panel {
+	text-align: center;
+    padding: 30px;
+}
 
-
-
+.navbar-inverse {
+	text-transform: uppercase;
+}

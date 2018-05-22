@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
+use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $events = [];
+        $data = Event::all();
+        if($data->count())
+        {
+            foreach ($data as $key => $value) {
+                $events[] = Calendar::event(
+                    $value->title,
+                    true,
+                    new \DateTime($value->start_date),
+                new \DateTime($value->end_date.' +1 day')
+            );
+          }
+       }
+      $calendar = Calendar::addEvents($events); 
+        return view('home', compact('calendar'));
     }
 }

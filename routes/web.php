@@ -41,7 +41,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::resource('fees-structures', 'FeesStructuresController');
 		// Social Category
 		Route::resource('social-categories', 'SocialCategoriesController');
-
+		// 
+		Route::resource('employee-positions', 'EmployeePositionsController');
 	});
 
 	Route::middleware('currentSchoolSession')->namespace('students')->group(function () {
@@ -65,6 +66,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::resource('accounts-transactions', 'AccountsTransactionsController');
 		Route::get('balance-sheet', 'BalanceSheetController@showBalanceSheet')->name('accounts.balance-sheet');
 	});
+
+	Route::namespace('employees')->group(function () {
+		// Student
+		Route::resource('employees', 'EmployeesController');
+	});
+
 });
 
 Route::get('/', function () {

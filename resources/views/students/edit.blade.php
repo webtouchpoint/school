@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-12">
             @component('components.panel')
-                <p class="bg-primary">Student Info Edit Form</p>
+                <p class="bg-primary form-title">Student Info Edit Form</p>
 
                <form role="form" method="POST" action="{{ route('students.update', $student->id) }}">
                     {{ method_field('PATCH') }}

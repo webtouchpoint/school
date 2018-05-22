@@ -17,7 +17,7 @@
 	    </div>
 	</div>
 
-	<table class="table table-bordered" id="accounts-transactions-table">
+	<table class="table table-bordered table-striped" id="accounts-transactions-table">
 	    <thead>
 	        <th>Serial</th>
 	        <th>Head</th>
