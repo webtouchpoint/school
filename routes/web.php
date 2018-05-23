@@ -68,8 +68,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
 	});
 
 	Route::namespace('employees')->group(function () {
-		// Student
+		// Students
 		Route::resource('employees', 'EmployeesController');
+	});
+
+	Route::prefix('exam-report')->namespace('examReport')->group(function () {
+		// Grades
+		Route::resource('grades', 'GradesController');
+		// Examinations
+		Route::resource('examinations', 'ExaminationsController');
 	});
 
 });

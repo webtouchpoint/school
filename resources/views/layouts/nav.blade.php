@@ -65,8 +65,11 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{{ route('accounts-heads.index') }}">Accounts Head</a>
+                            <a href="{{ route('grades.index') }}">Grading Level</a>
                         </li>
+                        <li>
+                            <a href="{{ route('examinations.index') }}">Examinations</a>
+                        </li>                        
                     </ul>
                 </li>                
             </ul>
@@ -99,7 +102,10 @@
                         </li>                              
                         <li>
                             <a href="{{ route('subject-groups.index') }}">Subject Group</a>
-                        </li>   
+                        </li>
+                        <li>   
+                            <a href="{{ route('subjects.index') }}">Subjects</a>
+                        </li>                           
                         <li>
                             <a href="{{ route('fees-categories.index') }}">Fees Category</a>
                         </li>                                                                   
