@@ -33,6 +33,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::get('/subject-groups/fetch-by-class-id/{school_class_id}', 'SubjectGroupsController@fetchBySchoolClassId');
 		Route::resource('subject-groups', 'SubjectGroupsController');
 		// Subject
+		Route::get('/subjects/fetch-by-class-id/{school_class_id}', 'SubjectsController@fetchBySchoolClassId');
 		Route::resource('subjects', 'SubjectsController');
 		// Fees Category
 		Route::resource('fees-categories', 'FeesCategoriesController');
@@ -77,6 +78,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		Route::resource('grades', 'GradesController');
 		// Examinations
 		Route::resource('examinations', 'ExaminationsController');
+		// Marks
+		Route::resource('marks', 'MarksController');		
 	});
 
 });

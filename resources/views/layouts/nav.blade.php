@@ -69,6 +69,9 @@
                         </li>
                         <li>
                             <a href="{{ route('examinations.index') }}">Examinations</a>
+                        </li>    
+                        <li>
+                            <a href="{{ route('marks.index') }}">Set Marks</a>
                         </li>                        
                     </ul>
                 </li>                

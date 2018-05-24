@@ -108,6 +108,15 @@ class SubjectsController extends Controller
         return back();
     }
 
+    public function fetchBySchoolClassId($school_class_id)
+    {
+        $subjects = Subject::select('id', 'name')
+                            ->where('school_class_id', $school_class_id)
+                            ->get();
+
+        return $subjects;
+    }
+
     protected function validateData($request)
     {
         return $request->validate([

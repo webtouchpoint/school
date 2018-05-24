@@ -20,8 +20,8 @@ class CreateGradesTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
             $table->string('letter_grade');
-            $table->decimal('marks_from', 4, 2);
-            $table->decimal('marks_to', 4, 2);            
+            $table->double('marks_from', 5, 2);
+            $table->double('marks_to', 5, 2);            
             $table->string('performance');
             $table->softDeletes();
             $table->timestamps();
