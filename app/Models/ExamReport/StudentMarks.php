@@ -5,11 +5,17 @@ namespace App\Models\ExamReport;
 use App\Models\Model;
 use App\Models\Settings\Subject;
 use App\Models\Settings\SchoolClass;
+use App\Models\Students\AcademicInfo;
 use App\Models\ExamReport\Examination;
 
-class Marks extends Model
+class StudentMarks extends Model
 {
-    public function schoolClass()
+    public function academicInfo()
+    {
+        return $this->belongsTo(AcademicInfo::class, 'academic_info_id');
+    }
+
+     public function schoolClass()
     {
         return $this->belongsTo(SchoolClass::class, 'school_class_id');
     }
@@ -22,10 +28,5 @@ class Marks extends Model
     public function examination()
     {
         return $this->belongsTo(Examination::class, 'examination_id');
-    }   
-    
-    public function studentMarks()
-    {
-        return $this->belongsTo(StudentMarks::class);
-    }     
+    }  
 }

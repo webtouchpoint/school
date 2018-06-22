@@ -79,8 +79,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		// Examinations
 		Route::resource('examinations', 'ExaminationsController');
 		// Marks
-		Route::resource('marks', 'MarksController');		
+		Route::resource('marks', 'MarksController');	
+		// Marks
+		Route::resource('student-marks', 'StudentMarksController');		
+		// Report
+		Route::get('generate', 'ReportsController@showGenerateReportForm')->name('exam-report.showReportGenerateForm');
+		Route::post('generate', 'ReportsController@generateReport')->name('exam-report.generate');;
 	});
+
+	Route::resource('events', 'EventsController');
 
 });
 

@@ -19,7 +19,6 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">{{ optional($current_session_data)->session }} <span class="sr-only">(current)</span></a></li>
                 <!-- Student Links -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -72,13 +71,22 @@
                         </li>    
                         <li>
                             <a href="{{ route('marks.index') }}">Set Marks</a>
-                        </li>                        
+                        </li>    
+                        <li>
+                            <a href="{{ route('student-marks.index') }}">Marks Entry</a>
+                        </li>                           
                     </ul>
-                </li>                
+                </li>   
+                <li>
+                    <a href="{{ route('events.index') }}">Events</a>
+                </li>             
             </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
+                <li class="active">
+                    <a href="#">{{ optional($current_session_data)->session }} <span class="sr-only">(current)</span></a>
+                </li>
                 <!-- Settings Links -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">

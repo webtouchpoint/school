@@ -11,23 +11,30 @@
 // Fontawesome
 @import "../libs/font-awesome/scss/font-awesome";
 
-label {
-	font-weight: 300;
-}
-
-.form-title {
-    padding: 7px;
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: bold;
-    size: 30px!important;
-}
-
 .home .panel {
 	text-align: center;
     padding: 30px;
 }
 
+.panel .panel-heading {
+	border-bottom: none;
+	text-align: center;
+	text-transform: uppercase;
+	.panel-title {
+		font-size: 18px;
+		color: $brand-primary;
+	}
+}
+
 .navbar-inverse {
 	text-transform: uppercase;
 }
+ .navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+label {
+    font-weight: 500!important;
+}
+
+

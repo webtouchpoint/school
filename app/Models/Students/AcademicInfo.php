@@ -7,6 +7,7 @@ use App\Models\Settings\Section;
 use App\Models\Settings\SchoolClass;
 use App\Models\Settings\FeesStructure;
 use App\Models\Settings\SchoolSession;
+use App\Models\ExamReport\StudentMarks;
 
 class AcademicInfo extends Model
 {
@@ -29,6 +30,11 @@ class AcademicInfo extends Model
     {
         return $this->belongsToMany(FeesStructure::class, 'fee_student', 'academic_info_id', 'fees_structure_id')
             ->withPivot('effective_from', 'amount', 'discount', 'paid');
+    }
+
+    public function studentMarks()
+    {
+        return $this->belongsTo(StudentMarks::class);
     }
 
 	 /**

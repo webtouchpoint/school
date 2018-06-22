@@ -8,9 +8,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            @component('components.panel')
-                <p class="bg-primary form-title">Employee Edit Form</p>
-
+            @component('components.panelWithHeading')
+                @slot('title')
+                    Employee Edit Form
+                @endslot 
                <form role="form" method="POST" action="{{ route('employees.update', $employee->id) }}">
                     {{ method_field('PATCH') }}
 

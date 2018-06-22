@@ -1,7 +1,5 @@
 {{ csrf_field() }}
-<div>
-    <h4><span aria-hidden="true" class="glyphicon glyphicon-triangle-right"></span> System information:</h4>
-</div>
+
 <div class="row">
 	<div class="col-md-3">
 		<div class="form-group{{ $errors->has('school_session_id') ? ' has-error' : '' }}">
@@ -81,9 +79,6 @@
 </div> <!-- ./row -->
 
 <!-- Basic Information -->
-<div>
-    <h4><span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span> Basic Information:</h4>
-</div>
 <div class="row">
 	<div class="col-md-3">
 		<div class="form-group{{ $errors->has('aadhaar') ? ' has-error' : '' }}">
@@ -273,9 +268,6 @@
 	<div class="col-md-3">&nbsp;</div>
 </div><!-- ./row -->
 
-<div>
-    <h4><span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span> Address Details:</h4>
-</div>
 <div class="row">
 	<div class="col-md-9">
 		<div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
@@ -342,9 +334,6 @@
 	</div>
 </div> <!-- ./row	 -->
 
-<div>
-    <h4><span aria-hidden="true" class="glyphicon glyphicon-education"></span> Education Details:</h4>
-</div>
 <div class="row">
 	<div class="col-md-3">
 		<div class="form-group{{ $errors->has('last_examination') ? ' has-error' : '' }}">
@@ -398,9 +387,6 @@
 	@endif
 </div> <!-- ./row -->
 
-<div>
-    <h4><span aria-hidden="true" class="glyphicon glyphicon-credit-card"></span> Bank Details:</h4>
-</div>
 <div class="row">
 	<div class="col-md-3">
 		<div class="form-group{{ $errors->has('bank_account_number') ? ' has-error' : '' }}">
@@ -448,9 +434,6 @@
 	</div>
 </div> <!-- ./row -->
 
-<div>
-    <h4><span aria-hidden="true" class="glyphicon glyphicon-hand-right"></span> Others Details:</h4>
-</div>
 <div class="row">
 	<div class="col-md-3">
 		<div class="form-group{{ $errors->has('is_bpl') ? ' has-error' : '' }}">

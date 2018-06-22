@@ -44,7 +44,7 @@ class SchoolSessionsController extends Controller
     {
         $validatedData = $this->validateData($request);
 
-        $schoolSession = SchoolSession::create($validatedData);
+        SchoolSession::create($validatedData);
 
         flash('Session data has been saved!');
 

@@ -1,9 +1,6 @@
 {{ csrf_field() }}
 
 <!-- Basic Information -->
-<div>
-    <h4><span aria-hidden="true" class="glyphicon glyphicon-info-sign"></span> Basic Information:</h4>
-</div>
 <div class="row">
 		<div class="col-md-3">
 		<div class="form-group{{ $errors->has('employee_position_id') ? ' has-error' : '' }}">
@@ -155,9 +152,6 @@
 	</div>
 </div> <!-- ./row -->
 
-<div>
-    <h4><span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span> Address Details:</h4>
-</div>
 <div class="row">
 	<div class="col-md-6">
 		<div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
@@ -194,9 +188,6 @@
 	</div>
 </div>
 
-<div>
-    <h4><span aria-hidden="true" class="glyphicon glyphicon-paperclip"></span> Joining:</h4>
-</div>
 <div class="row">
 	<div class="col-md-3">
 		<div class="form-group{{ $errors->has('nature_of_appointment') ? ' has-error' : '' }}">
@@ -225,9 +216,6 @@
 
 </div> <!-- ./row -->
 
-<div>
-    <h4><span aria-hidden="true" class="glyphicon glyphicon-education"></span> Highest Qualification:</h4>
-</div>
 <div class="row">
 	<div class="col-md-3">
 		<div class="form-group{{ $errors->has('highest_qualification_academic') ? ' has-error' : '' }}">
@@ -256,9 +244,6 @@
 
 </div> <!-- ./row -->
 
-<div>
-    <h4><span aria-hidden="true" class="glyphicon glyphicon-book"></span> Subjects:</h4>
-</div>
 <div class="row">
 	<div class="col-md-3">
 		<div class="form-group{{ $errors->has('classes_taught') ? ' has-error' : '' }}">
@@ -306,9 +291,6 @@
 	</div>
 </div> <!-- ./row -->
 
-<div>
-    <h4><span aria-hidden="true" class="glyphicon glyphicon-hand-right"></span> Others Details:</h4>
-</div>
 <div class="row">
 	<div class="col-md-3">
 		<div class="form-group{{ $errors->has('mathematics_or_science_studied_upto') ? ' has-error' : '' }}">

@@ -9,13 +9,13 @@ $navbar-default-border: $laravel-border-color;
 $panel-default-border: $laravel-border-color;
 $panel-inner-border: $laravel-border-color;
 
-// Brands
-$brand-primary: #30589f;
-// $brand-primary: #2972c0;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
+//Brands
+$brand-primary: #007bff; //darken(#428bca, 6.5%); // #337ab7
+$brand-success: #28a745;
+$brand-info:    #17a2b8;
+$brand-warning: #ffc107;
+$brand-danger:  #dc3545;
+
 
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
@@ -38,17 +38,17 @@ $input-color-placeholder: lighten($text-color, 30%);
 // Panels
 $panel-default-heading-bg: #fff;
 
-
+$navbar-height: 60px;
 
 //=== Inverted navbar
 // Reset inverted navbar basics
 $navbar-inverse-color:                      #fff;
-$navbar-inverse-bg:                         $brand-primary;
+$navbar-inverse-bg:                         #343a40;
 $navbar-inverse-border:                     darken($navbar-inverse-bg, 10%) !default;
 
 // Inverted navbar links
-$navbar-inverse-link-color:                 #eee;
-$navbar-inverse-link-hover-color:          	#000;
+$navbar-inverse-link-color:                 rgba(255,255,255,.5);
+$navbar-inverse-link-hover-color:          	#eee;
 $navbar-inverse-link-hover-bg:              transparent !default;
 $navbar-inverse-link-active-color:          $navbar-inverse-link-hover-color !default;
 $navbar-inverse-link-active-bg:             darken($navbar-inverse-bg, 5%) !default;
@@ -64,7 +64,6 @@ $navbar-inverse-brand-hover-bg:             transparent !default;
 $navbar-inverse-toggle-hover-bg:            #333 !default;
 $navbar-inverse-toggle-icon-bar-bg:         #fff !default;
 $navbar-inverse-toggle-border-color:        #333 !default;
-
 
 $text-color: #000;
 

@@ -1072,7 +1072,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(11);
-module.exports = __webpack_require__(48);
+module.exports = __webpack_require__(54);
 
 
 /***/ }),
@@ -1081,7 +1081,7 @@ module.exports = __webpack_require__(48);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_destroy__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_destroy__ = __webpack_require__(53);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -1102,7 +1102,9 @@ Vue.component('subject-form-view', __webpack_require__(39));
 Vue.component('fees-structure-form-view', __webpack_require__(41));
 Vue.component('admission-form-view', __webpack_require__(43));
 Vue.component('fees-payment-form-view', __webpack_require__(45));
-Vue.component('marks-form-view', __webpack_require__(63));
+Vue.component('marks-form-view', __webpack_require__(47));
+Vue.component('marks-entry-form-view', __webpack_require__(49));
+Vue.component('generate-exam-report-form-view', __webpack_require__(51));
 
 
 
@@ -43273,67 +43275,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 47 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-    data: function data() {
-        return {
-            id: '',
-            name: '',
-            type: '',
-            url: '',
-            optional_msg: ''
-        };
-    },
-
-    methods: {
-        destroy: function destroy() {
-            var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-            var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-            var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
-            var url = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
-            var modal = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '';
-            var optional_msg = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '';
-
-            this.id = id;
-            this.name = name;
-            this.url = url + id;
-            this.type = type;
-            this.optional_msg = optional_msg;
-            $(modal).modal("show");
-        }
-    }
-});
-
-/***/ }),
-/* 48 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(64)
+var __vue_script__ = __webpack_require__(48)
 /* template */
 var __vue_template__ = null
 /* template functional */
@@ -43374,7 +43321,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 64 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43410,6 +43357,245 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		this.fetch();
 	}
 });
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(50)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/views/exam_report/student_marks/MarksEntryFormView.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ebb6a0e0", Component.options)
+  } else {
+    hotAPI.reload("data-v-ebb6a0e0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			showSubject: false,
+			subjects: [],
+			academicInfos: []
+		};
+	},
+
+	methods: {
+		onClassChange: function onClassChange() {
+			this.fetch();
+			this.fetchStudents();
+		},
+		fetch: function fetch() {
+			var _this = this;
+
+			var class_id = $('#school_class_id').val();
+
+			if (class_id > 0) {
+				axios.get('/settings/subjects/fetch-by-class-id/' + class_id).then(function (_ref) {
+					var data = _ref.data;
+					return _this.subjects = data;
+				});
+				this.showSubject = true;
+			}
+		},
+		fetchStudents: function fetchStudents() {
+			var _this2 = this;
+
+			var class_id = $('#school_class_id').val();
+
+			var session_id = $('#session').val();
+
+			if (class_id > 0) {
+				axios.get('/students/fetch-by-class-id/' + class_id + '/' + session_id).then(function (_ref2) {
+					var data = _ref2.data;
+					return _this2.academicInfos = data.data;
+				});
+				this.showStudent = true;
+			}
+		}
+	},
+	created: function created() {
+		this.fetch();
+		this.fetchStudents();
+	}
+});
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(52)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/views/exam_report/GenerateReportFormView.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0d355960", Component.options)
+  } else {
+    hotAPI.reload("data-v-0d355960", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			showStudent: false,
+			showSubmitButton: false,
+			academicInfos: []
+		};
+	},
+
+	methods: {
+		onClassChange: function onClassChange() {
+			this.fetchStudents();
+		},
+		onStudentChange: function onStudentChange() {
+			var academinInfo_id = $('#academicInfo_id').val();
+
+			if (academinInfo_id > 0) {
+				this.showSubmitButton = true;
+			}
+		},
+		fetchStudents: function fetchStudents() {
+			var _this = this;
+
+			var class_id = $('#school_class_id').val();
+
+			var session_id = $('#session').val();
+
+			if (class_id > 0) {
+				axios.get('/students/fetch-by-class-id/' + class_id + '/' + session_id).then(function (_ref) {
+					var data = _ref.data;
+					return _this.academicInfos = data.data;
+				});
+				this.showStudent = true;
+			}
+		}
+	},
+	created: function created() {
+		this.fetchStudents();
+	}
+});
+
+/***/ }),
+/* 53 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data: function data() {
+        return {
+            id: '',
+            name: '',
+            type: '',
+            url: '',
+            optional_msg: ''
+        };
+    },
+
+    methods: {
+        destroy: function destroy() {
+            var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+            var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+            var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+            var url = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+            var modal = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '';
+            var optional_msg = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : '';
+
+            this.id = id;
+            this.name = name;
+            this.url = url + id;
+            this.type = type;
+            this.optional_msg = optional_msg;
+            $(modal).modal("show");
+        }
+    }
+});
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

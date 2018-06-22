@@ -15,31 +15,9 @@
             <h3>Dashboard <small>&raquo; welcome</small></h3>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            @component('components.panel')
-                1 New Student
-            @endcomponent
-        </div>  
-        <div class="col-md-3">
-            @component('components.panel')
-                Income
-            @endcomponent
-        </div> 
-        <div class="col-md-3">
-            @component('components.panel')
-               Expense
-            @endcomponent
-        </div>    
-        <div class="col-md-3">
-            @component('components.panel')
-                Income
-            @endcomponent
-        </div> 
-    </div> 
  
      <div class="panel panel-default">
-        <div class="panel-heading">Full Calendar Example</div>
+        <div class="panel-heading">Calendar</div>
 
         <div class="panel-body">
             {!! $calendar->calendar() !!}

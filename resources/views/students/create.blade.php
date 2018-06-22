@@ -10,9 +10,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            @component('components.panel')
-                <p class="bg-primary form-title">New Admission Form</p>
-
+            @component('components.panelWithHeading')
+                @slot('title')
+                    New Admission Form
+                @endslot 
                <form role="form" method="POST" action="{{ route('students.store') }}">
                     @include('students.form', [
                         'isEdit' => false

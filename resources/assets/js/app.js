@@ -19,6 +19,8 @@ Vue.component('fees-structure-form-view', require('./views/settings/FeesStructur
 Vue.component('admission-form-view', require('./views/students/AdmissionFormView.vue'));
 Vue.component('fees-payment-form-view', require('./views/accounts/fees_collection/PaymentFormView.vue'));
 Vue.component('marks-form-view', require('./views/exam_report/marks/MarksFormView.vue'));
+Vue.component('marks-entry-form-view', require('./views/exam_report/student_marks/MarksEntryFormView.vue'));
+Vue.component('generate-exam-report-form-view', require('./views/exam_report/GenerateReportFormView.vue'));
 
 import destroy from './mixins/destroy';
 
